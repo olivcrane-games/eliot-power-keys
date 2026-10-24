@@ -367,12 +367,12 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 let lang=store.get('rt-lang','ca'), soundOn=store.get('rt-sound',true), voiceOn=store.get('rt-voice',true);
 if(!['ca','es','de','en'].includes(lang))lang='ca';
 let best=store.get('rt-stars',{});
-const FAMILY=[['MAMA','👩',null,null,'mama1'],['PAPA','👨',null,null,'papa1'],['PUAAAA','🐔',null,null,'hen']];
-const FAMPH={MAMA:['mama1','mama2'],PAPA:['papa1','papa2','papa3'],PUAAAA:['hen'],GALLINA:['hen'],ELIOT:['e_grin','e_laugh','e_castle','e_boat']};
+const FAMILY=[['MAMA','👩',null,null,'mama1'],['PAPA','👨',null,null,'papa1']];
+const FAMPH={MAMA:['mama1','mama2'],PAPA:['papa1','papa2','papa3'],ELIOT:['e_grin','e_laugh','e_castle','e_boat']};
 const SYL1=['MA','ME','MI','MO','MU','PA','PE','PI','PO','PU','SA','SE','SI','SO','SU','LA','LE','LI','LO','LU'].map(x=>[x,'🗣️',null,[x]]);
 const syl=(w,e,parts)=>[w,e,null,parts];
 const T={
- ca:{name:'Català',bossIntroN:n=>'Ve '+n+'! Escriu les paraules per fer-li zap!',bossBeatN:n=>'Has guanyat '+n+'!',toys:[['ROBOT','🤖'],['PILOTA','⚽'],['OSSET','🧸'],['COTXE','🚗'],['TREN','🚂'],['DAU','🎲'],['CAVALL','🐴'],['TAMBOR','🥁'],['GLOBUS','🎈'],['COET','🚀']],ice:[['NEU','❄️'],['GEL','🧊'],['FOCA','🦭'],['TRINEU','🛷'],['GUANTS','🧤'],['BUFANDA','🧣'],['PATINS','⛸️'],['CASTELL','🏰'],['ESTEL','⭐'],['LLUNA','🌙']],toysSay:'Les joguines es desperten, Eliot!',iceSay:'Benvingut al Regne de Gel, Eliot! Escriu les lletres per tallar les tortugues voladores estúpides amb l\'espasa!',hallo:[['CARBASSA','🎃'],['BRUIXA','🧙'],['FANTASMA','👻'],['RATPENAT','🦇'],['ARANYA','🕷️'],['GAT','🐈‍⬛'],['LLUNA','🌕'],['ESCOMBRA','🧹'],['CARAMEL','🍬'],['BUUU','👻']],halloSay:'Feliç Halloween, Eliot! Buuu!',beeSay:'Cada lletra fa sortir una abella!',turtle:'Tortuga voladora estúpida!',modeHint:{fade:'Recorda la paraula!',pic:'Escriu el nom del dibuix',dict:'Escolta i escriu',read:'Prem 1, 2 o 3'},readSay:'Llegeix la paraula i tria el dibuix!',tokenSay:n=>"Estrella d'or! "+(n===1?'Només en falta una':'En falten '+n)+' per a una moneda de veritat!',play:'Juga!',gold:n=>'+'+n+' OR!',capsHint:l=>'Majúscula! Mantén ⇧ i prem '+l,accHint:(a,v)=>'Prem '+a+' i després '+v,sumSay:(a,b)=>a+' més '+b+'?',sumHint:'Suma! Quants en fan?',accents:[['CAFÈ','☕'],['PASTÍS','🎂'],['MÀ','✋'],['CAMIÓ','🚚'],['LLEÓ','🦁'],['AVIÓ','✈️'],['MELÓ','🍈'],['TOMÀQUET','🍅']],boardSay:'Pissarra màgica! Escriu el que vulguis!',boardHint:'🪄 Escriu el que vulguis. Prem espai per escoltar la paraula.',menu:'Mons',sound:'So',voice:'Veu',tabKeys:'Teclat',tabPad:'Trackpad',
+ ca:{name:'Català',bossIntroN:n=>'Ve '+n+'! Escriu les paraules per fer-li zap!',bossBeatN:n=>'Has guanyat '+n+'!',toys:[['ROBOT','🤖'],['PILOTA','⚽'],['OSSET','🧸'],['COTXE','🚗'],['TREN','🚂'],['DAU','🎲'],['CAVALL','🐴'],['TAMBOR','🥁'],['GLOBUS','🎈'],['COET','🚀']],ice:[['NEU','❄️'],['GEL','🧊'],['FOCA','🦭'],['TRINEU','🛷'],['GUANTS','🧤'],['BUFANDA','🧣'],['PATINS','⛸️'],['CASTELL','🏰'],['ESTEL','⭐'],['LLUNA','🌙']],toysSay:'Les joguines es desperten, Eliot!',iceSay:'Benvingut al Regne de Gel, Eliot! Camina fins al castell i talla les tortugues voladores estúpides amb l\'espasa!',castleSay:'Has arribat al castell de gel!',hallo:[['CARBASSA','🎃'],['BRUIXA','🧙'],['FANTASMA','👻'],['RATPENAT','🦇'],['ARANYA','🕷️'],['GAT','🐈‍⬛'],['LLUNA','🌕'],['ESCOMBRA','🧹'],['CARAMEL','🍬'],['BUUU','👻']],halloSay:'Feliç Halloween, Eliot! Buuu!',beeSay:'Cada lletra fa sortir una abella!',turtle:'Tortuga voladora estúpida!',modeHint:{fade:'Recorda la paraula!',pic:'Escriu el nom del dibuix',dict:'Escolta i escriu',read:'Prem 1, 2 o 3'},readSay:'Llegeix la paraula i tria el dibuix!',tokenSay:n=>"Estrella d'or! "+(n===1?'Només en falta una':'En falten '+n)+' per a una moneda de veritat!',play:'Juga!',gold:n=>'+'+n+' OR!',capsHint:l=>'Majúscula! Mantén ⇧ i prem '+l,accHint:(a,v)=>'Prem '+a+' i després '+v,sumSay:(a,b)=>a+' més '+b+'?',sumHint:'Suma! Quants en fan?',accents:[['CAFÈ','☕'],['PASTÍS','🎂'],['MÀ','✋'],['CAMIÓ','🚚'],['LLEÓ','🦁'],['AVIÓ','✈️'],['MELÓ','🍈'],['TOMÀQUET','🍅']],boardSay:'Pissarra màgica! Escriu el que vulguis!',boardHint:'🪄 Escriu el que vulguis. Prem espai per escoltar la paraula.',menu:'Mons',sound:'So',voice:'Veu',tabKeys:'Teclat',tabPad:'Trackpad',
    tip:"Eliot, posa els dits índex a la <mark>F</mark> i a la <mark>J</mark>. Hi notaràs una ratlleta!",
    done:'Molt bé, Eliot!',next:'Següent món',again:'Torna-hi',realCoin:'MONEDA DE VERITAT!',secretPipe:'Canonada secreta',
    power:()=>'PODER ELIOT!',powerSay:c=>"L'Eliot es torna "+c.toLowerCase()+'!',colors:['VERMELL','BLAU','GROC','VERD','ROSA'],
@@ -402,7 +402,7 @@ const T={
    boss2:[['PODER','💪'],['ELIOT','🦸'],['ZAP','⚡'],['ESTEL','⭐'],['SALTA','🦘'],['ROBOT','🤖']],
    star:[['ELIOT','🦸'],['ESTEL','⭐'],['LLUNA','🌙'],['ZAP','⚡'],['ROBOT','🤖'],['VOLA','🦅']],
    syl2:[syl('CASA','🏠',['CA','SA']),syl('LLUNA','🌙',['LLU','NA']),syl('POMA','🍎',['PO','MA']),syl('VACA','🐄',['VA','CA']),syl('ROSA','🌹',['RO','SA']),syl('FOCA','🦭',['FO','CA']),syl('PILOTA','⚽',['PI','LO','TA']),syl('GALETA','🍪',['GA','LE','TA']),syl('FORÇA','💪',['FOR','ÇA'])]},
- es:{name:'Español',bossIntroN:n=>'¡Llega '+n+'! ¡Escribe las palabras para hacerle zap!',bossBeatN:n=>'¡Has vencido a '+n.replace(/^el /,'')+'!',toys:[['ROBOT','🤖'],['PELOTA','⚽'],['OSITO','🧸'],['COCHE','🚗'],['TREN','🚂'],['DADO','🎲'],['CABALLO','🐴'],['TAMBOR','🥁'],['GLOBO','🎈'],['COHETE','🚀']],ice:[['NIEVE','❄️'],['HIELO','🧊'],['FOCA','🦭'],['TRINEO','🛷'],['GUANTES','🧤'],['BUFANDA','🧣'],['PATINES','⛸️'],['CASTILLO','🏰'],['ESTRELLA','⭐'],['LUNA','🌙']],toysSay:'¡Los juguetes se despiertan, Eliot!',iceSay:'¡Bienvenido al Reino de Hielo, Eliot! ¡Escribe las letras para cortar las estúpidas tortugas voladoras con la espada!',hallo:[['CALABAZA','🎃'],['BRUJA','🧙'],['FANTASMA','👻'],['ARAÑA','🕷️'],['GATO','🐈‍⬛'],['LUNA','🌕'],['ESCOBA','🧹'],['DULCE','🍬'],['CARAMELO','🍭'],['BUUU','👻']],halloSay:'¡Feliz Halloween, Eliot! ¡Buuu!',beeSay:'¡Cada letra suelta una abeja!',turtle:'¡Estúpida tortuga voladora!',modeHint:{fade:'¡Recuerda la palabra!',pic:'Escribe el nombre del dibujo',dict:'Escucha y escribe',read:'Pulsa 1, 2 o 3'},readSay:'¡Lee la palabra y elige el dibujo!',tokenSay:n=>'¡Estrella de oro! ¡'+(n===1?'Solo falta una':'Faltan '+n)+' para una moneda de verdad!',play:'¡A jugar!',gold:n=>'¡+'+n+' ORO!',capsHint:l=>'¡Mayúscula! Mantén ⇧ y pulsa '+l,accHint:(a,v)=>'Pulsa '+a+' y luego '+v,sumSay:(a,b)=>a+' más '+b+'?',sumHint:'¡Suma! ¿Cuántos son?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['CAMIÓN','🚚'],['LIMÓN','🍋'],['RATÓN','🐭'],['MAMÁ','👩'],['PAPÁ','👨']],boardSay:'¡Pizarra mágica! ¡Escribe lo que quieras!',boardHint:'🪄 Escribe lo que quieras. Pulsa espacio para escuchar la palabra.',menu:'Mundos',sound:'Sonido',voice:'Voz',tabKeys:'Teclado',tabPad:'Trackpad',
+ es:{name:'Español',bossIntroN:n=>'¡Llega '+n+'! ¡Escribe las palabras para hacerle zap!',bossBeatN:n=>'¡Has vencido a '+n.replace(/^el /,'')+'!',toys:[['ROBOT','🤖'],['PELOTA','⚽'],['OSITO','🧸'],['COCHE','🚗'],['TREN','🚂'],['DADO','🎲'],['CABALLO','🐴'],['TAMBOR','🥁'],['GLOBO','🎈'],['COHETE','🚀']],ice:[['NIEVE','❄️'],['HIELO','🧊'],['FOCA','🦭'],['TRINEO','🛷'],['GUANTES','🧤'],['BUFANDA','🧣'],['PATINES','⛸️'],['CASTILLO','🏰'],['ESTRELLA','⭐'],['LUNA','🌙']],toysSay:'¡Los juguetes se despiertan, Eliot!',iceSay:'¡Bienvenido al Reino de Hielo, Eliot! ¡Camina hasta el castillo y corta las estúpidas tortugas voladoras con la espada!',castleSay:'¡Has llegado al castillo de hielo!',hallo:[['CALABAZA','🎃'],['BRUJA','🧙'],['FANTASMA','👻'],['ARAÑA','🕷️'],['GATO','🐈‍⬛'],['LUNA','🌕'],['ESCOBA','🧹'],['DULCE','🍬'],['CARAMELO','🍭'],['BUUU','👻']],halloSay:'¡Feliz Halloween, Eliot! ¡Buuu!',beeSay:'¡Cada letra suelta una abeja!',turtle:'¡Estúpida tortuga voladora!',modeHint:{fade:'¡Recuerda la palabra!',pic:'Escribe el nombre del dibujo',dict:'Escucha y escribe',read:'Pulsa 1, 2 o 3'},readSay:'¡Lee la palabra y elige el dibujo!',tokenSay:n=>'¡Estrella de oro! ¡'+(n===1?'Solo falta una':'Faltan '+n)+' para una moneda de verdad!',play:'¡A jugar!',gold:n=>'¡+'+n+' ORO!',capsHint:l=>'¡Mayúscula! Mantén ⇧ y pulsa '+l,accHint:(a,v)=>'Pulsa '+a+' y luego '+v,sumSay:(a,b)=>a+' más '+b+'?',sumHint:'¡Suma! ¿Cuántos son?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['CAMIÓN','🚚'],['LIMÓN','🍋'],['RATÓN','🐭'],['MAMÁ','👩'],['PAPÁ','👨']],boardSay:'¡Pizarra mágica! ¡Escribe lo que quieras!',boardHint:'🪄 Escribe lo que quieras. Pulsa espacio para escuchar la palabra.',menu:'Mundos',sound:'Sonido',voice:'Voz',tabKeys:'Teclado',tabPad:'Trackpad',
    tip:'Eliot, pon los dedos índice sobre la <mark>F</mark> y la <mark>J</mark>. ¡Tienen una rayita que se nota!',
    done:'¡Muy bien, Eliot!',next:'Siguiente mundo',again:'Otra vez',realCoin:'¡MONEDA DE VERDAD!',secretPipe:'Tubería secreta',
    power:()=>'¡PODER ELIOT!',powerSay:c=>'¡Eliot se vuelve '+c.toLowerCase()+'!',colors:['ROJO','AZUL','AMARILLO','VERDE','ROSA'],
@@ -432,7 +432,7 @@ const T={
    boss2:[['PODER','💪'],['ELIOT','🦸'],['ZAP','⚡'],['RAYO','🌩️'],['SALTA','🦘'],['ROBOT','🤖']],
    star:[['ELIOT','🦸'],['ESTRELLA','⭐'],['LUNA','🌙'],['ZAP','⚡'],['ROBOT','🤖'],['VUELA','🦅']],
    syl2:[syl('PATO','🦆',['PA','TO']),syl('CASA','🏠',['CA','SA']),syl('MESA','🪑',['ME','SA']),syl('LUNA','🌙',['LU','NA']),syl('SOPA','🍲',['SO','PA']),syl('GATO','🐱',['GA','TO']),syl('MONO','🐒',['MO','NO']),syl('PELO','💇',['PE','LO']),syl('TOMATE','🍅',['TO','MA','TE']),syl('PALOMA','🕊️',['PA','LO','MA'])]},
- de:{name:'Deutsch',bossIntroN:n=>n+' kommt! Tipp die Wörter, um ihn zu zappen!',bossBeatN:n=>'Du hast '+n+' besiegt!',toys:[['ROBOTER','🤖'],['BALL','⚽'],['TEDDY','🧸'],['AUTO','🚗'],['ZUG','🚂'],['PUPPE','🪆'],['PFERD','🐴'],['TROMMEL','🥁'],['BALLON','🎈'],['RAKETE','🚀']],ice:[['SCHNEE','❄️'],['EIS','🧊'],['ROBBE','🦭'],['SCHLITTEN','🛷'],['SCHAL','🧣'],['BURG','🏰'],['STERN','⭐'],['MOND','🌙'],['KALT','🥶'],['WINTER','⛄']],toysSay:'Die Spielsachen wachen auf, Eliot!',iceSay:'Willkommen im Eiskönigreich, Eliot! Tipp die Buchstaben und hau die dummen fliegenden Schildkröten mit dem Schwert weg!',hallo:[['HEXE','🧙'],['GEIST','👻'],['SPINNE','🕷️'],['KATZE','🐈‍⬛'],['MOND','🌕'],['BESEN','🧹'],['BONBON','🍬'],['NACHT','🌙'],['FLEDERMAUS','🦇'],['BUH','👻']],halloSay:'Fröhliches Halloween, Eliot! Buh!',beeSay:'Jeder Buchstabe lässt eine Biene fliegen!',turtle:'Doofe fliegende Schildkröte!',modeHint:{fade:'Merk dir das Wort!',pic:'Schreib den Namen vom Bild',dict:'Hör zu und schreib',read:'Drück 1, 2 oder 3'},readSay:'Lies das Wort und wähl das Bild!',tokenSay:n=>'Goldstern! Noch '+n+' bis zur echten Münze!',play:'Los geht’s!',gold:n=>'+'+n+' GOLD!',capsHint:l=>'Großbuchstabe! Halte ⇧ und drück '+l,accHint:(a,v)=>'Drück '+a+', dann '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Rechnen! Wie viele sind das?',accents:[['GRÜN','🟢'],['TÜR','🚪'],['KÄSE','🧀'],['BÄR','🐻'],['MÜDE','😴'],['FÜNF','🖐️'],['MÄUSE','🐭'],['BRÖTCHEN','🥖']],boardSay:'Zaubertafel! Schreib, was du willst!',boardHint:'🪄 Schreib, was du willst. Leertaste zum Anhören.',menu:'Welten',sound:'Ton',voice:'Stimme',tabKeys:'Tastatur',tabPad:'Trackpad',
+ de:{name:'Deutsch',bossIntroN:n=>n+' kommt! Tipp die Wörter, um ihn zu zappen!',bossBeatN:n=>'Du hast '+n+' besiegt!',toys:[['ROBOTER','🤖'],['BALL','⚽'],['TEDDY','🧸'],['AUTO','🚗'],['ZUG','🚂'],['PUPPE','🪆'],['PFERD','🐴'],['TROMMEL','🥁'],['BALLON','🎈'],['RAKETE','🚀']],ice:[['SCHNEE','❄️'],['EIS','🧊'],['ROBBE','🦭'],['SCHLITTEN','🛷'],['SCHAL','🧣'],['BURG','🏰'],['STERN','⭐'],['MOND','🌙'],['KALT','🥶'],['WINTER','⛄']],toysSay:'Die Spielsachen wachen auf, Eliot!',iceSay:'Willkommen im Eiskönigreich, Eliot! Lauf zur Burg und hau die dummen fliegenden Schildkröten mit dem Schwert weg!',castleSay:'Du hast die Eisburg erreicht!',hallo:[['HEXE','🧙'],['GEIST','👻'],['SPINNE','🕷️'],['KATZE','🐈‍⬛'],['MOND','🌕'],['BESEN','🧹'],['BONBON','🍬'],['NACHT','🌙'],['FLEDERMAUS','🦇'],['BUH','👻']],halloSay:'Fröhliches Halloween, Eliot! Buh!',beeSay:'Jeder Buchstabe lässt eine Biene fliegen!',turtle:'Doofe fliegende Schildkröte!',modeHint:{fade:'Merk dir das Wort!',pic:'Schreib den Namen vom Bild',dict:'Hör zu und schreib',read:'Drück 1, 2 oder 3'},readSay:'Lies das Wort und wähl das Bild!',tokenSay:n=>'Goldstern! Noch '+n+' bis zur echten Münze!',play:'Los geht’s!',gold:n=>'+'+n+' GOLD!',capsHint:l=>'Großbuchstabe! Halte ⇧ und drück '+l,accHint:(a,v)=>'Drück '+a+', dann '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Rechnen! Wie viele sind das?',accents:[['GRÜN','🟢'],['TÜR','🚪'],['KÄSE','🧀'],['BÄR','🐻'],['MÜDE','😴'],['FÜNF','🖐️'],['MÄUSE','🐭'],['BRÖTCHEN','🥖']],boardSay:'Zaubertafel! Schreib, was du willst!',boardHint:'🪄 Schreib, was du willst. Leertaste zum Anhören.',menu:'Welten',sound:'Ton',voice:'Stimme',tabKeys:'Tastatur',tabPad:'Trackpad',
    tip:'Eliot, leg deine Zeigefinger auf <mark>F</mark> und <mark>J</mark>. Da spürst du einen kleinen Strich!',
    done:'Super, Eliot!',next:'Nächste Welt',again:'Nochmal',realCoin:'ECHTE MÜNZE!',secretPipe:'Geheimes Rohr',
    power:()=>'ELIOT POWER!',powerSay:c=>'Eliot wird '+c.toLowerCase()+'!',colors:['ROT','BLAU','GELB','GRÜN','ROSA'],
@@ -462,7 +462,7 @@ const T={
    boss2:[['POWER','💪'],['ELIOT','🦸'],['ZAP','⚡'],['STERN','⭐'],['SPRING','🦘'],['ROBOTER','🤖']],
    star:[['ELIOT','🦸'],['STERN','⭐'],['MOND','🌙'],['ZAP','⚡'],['ROBOTER','🤖'],['FLIEG','🦅']],
    syl2:[syl('BANANE','🍌',['BA','NA','NE']),syl('TOMATE','🍅',['TO','MA','TE']),syl('NASE','👃',['NA','SE']),syl('ROSE','🌹',['RO','SE']),syl('HASE','🐰',['HA','SE']),syl('SONNE','☀️',['SON','NE']),syl('KATZE','🐱',['KAT','ZE']),syl('LAMPE','💡',['LAM','PE'])]},
- en:{name:'English',bossIntroN:n=>n[0].toUpperCase()+n.slice(1)+' is here! Type the words to zap!',bossBeatN:n=>'You beat '+n+'!',toys:[['ROBOT','🤖'],['BALL','⚽'],['TEDDY','🧸'],['CAR','🚗'],['TRAIN','🚂'],['BLOCKS','🧱'],['HORSE','🐴'],['DRUM','🥁'],['BALLOON','🎈'],['ROCKET','🚀']],ice:[['SNOW','❄️'],['ICE','🧊'],['SEAL','🦭'],['SLED','🛷'],['GLOVES','🧤'],['SCARF','🧣'],['SKATES','⛸️'],['CASTLE','🏰'],['STAR','⭐'],['COLD','🥶']],toysSay:'The toys are waking up, Eliot!',iceSay:'Welcome to the Ice Kingdom, Eliot! Type the letters to hit the stupid flying turtles with your sword!',hallo:[['PUMPKIN','🎃'],['WITCH','🧙'],['GHOST','👻'],['BAT','🦇'],['SPIDER','🕷️'],['CAT','🐈‍⬛'],['MOON','🌕'],['BROOM','🧹'],['CANDY','🍬'],['BOO','👻']],halloSay:'Happy Halloween, Eliot! Boo!',beeSay:'Every letter lets a bee fly out!',turtle:'Stupid flying turtle!',modeHint:{fade:'Remember the word!',pic:'Type the name of the picture',dict:'Listen and type',read:'Press 1, 2 or 3'},readSay:'Read the word and pick the picture!',tokenSay:n=>'Gold star! '+n+' more for a real coin!',play:"Let's play!",gold:n=>'+'+n+' GOLD!',capsHint:l=>'Capital! Hold ⇧ and press '+l,accHint:(a,v)=>'Press '+a+' then '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Add them up! How many?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['LIMÓN','🍋'],['CAFÈ','☕'],['PASTÍS','🎂'],['GRÜN','🟢'],['BÄR','🐻']],boardSay:'Magic board! Type anything you like!',boardHint:'🪄 Type anything. Press space to hear the word.',menu:'Worlds',sound:'Sound',voice:'Voice',tabKeys:'Keyboard',tabPad:'Trackpad',
+ en:{name:'English',bossIntroN:n=>n[0].toUpperCase()+n.slice(1)+' is here! Type the words to zap!',bossBeatN:n=>'You beat '+n+'!',toys:[['ROBOT','🤖'],['BALL','⚽'],['TEDDY','🧸'],['CAR','🚗'],['TRAIN','🚂'],['BLOCKS','🧱'],['HORSE','🐴'],['DRUM','🥁'],['BALLOON','🎈'],['ROCKET','🚀']],ice:[['SNOW','❄️'],['ICE','🧊'],['SEAL','🦭'],['SLED','🛷'],['GLOVES','🧤'],['SCARF','🧣'],['SKATES','⛸️'],['CASTLE','🏰'],['STAR','⭐'],['COLD','🥶']],toysSay:'The toys are waking up, Eliot!',iceSay:'Welcome to the Ice Kingdom, Eliot! Walk to the castle and hit the stupid flying turtles with your sword!',castleSay:'You made it to the ice castle!',hallo:[['PUMPKIN','🎃'],['WITCH','🧙'],['GHOST','👻'],['BAT','🦇'],['SPIDER','🕷️'],['CAT','🐈‍⬛'],['MOON','🌕'],['BROOM','🧹'],['CANDY','🍬'],['BOO','👻']],halloSay:'Happy Halloween, Eliot! Boo!',beeSay:'Every letter lets a bee fly out!',turtle:'Stupid flying turtle!',modeHint:{fade:'Remember the word!',pic:'Type the name of the picture',dict:'Listen and type',read:'Press 1, 2 or 3'},readSay:'Read the word and pick the picture!',tokenSay:n=>'Gold star! '+n+' more for a real coin!',play:"Let's play!",gold:n=>'+'+n+' GOLD!',capsHint:l=>'Capital! Hold ⇧ and press '+l,accHint:(a,v)=>'Press '+a+' then '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Add them up! How many?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['LIMÓN','🍋'],['CAFÈ','☕'],['PASTÍS','🎂'],['GRÜN','🟢'],['BÄR','🐻']],boardSay:'Magic board! Type anything you like!',boardHint:'🪄 Type anything. Press space to hear the word.',menu:'Worlds',sound:'Sound',voice:'Voice',tabKeys:'Keyboard',tabPad:'Trackpad',
    tip:'Eliot, rest your pointer fingers on <mark>F</mark> and <mark>J</mark>. You can feel a little bump on them!',
    done:'Great job, Eliot!',next:'Next world',again:'Play again',realCoin:'REAL COIN!',secretPipe:'Secret pipe',
    power:()=>'ELIOT POWER!',powerSay:c=>c.toLowerCase()+' power, Eliot!',colors:['RED','BLUE','YELLOW','GREEN','PINK'],
@@ -580,7 +580,7 @@ const PADS=[
  {id:'p5',pad:'scroll',count:12,pics:'✌️🟡'}
 ];
 const lst=L=>typeof L.list==='function'?L.list():L.list;
-const FREE=[{id:'board',board:true},{id:'tricky',tricky:true,count:20},{id:'bee',bees:true,special:true,keys:'asdfghjklñqwertyuiop',count:24,theme:'meadow'},{id:'hallo',special:true,list:cur('hallo'),count:8,theme:'halloween'},{id:'toys',special:true,list:cur('toys'),boss:true,btype:'jack',count:6,theme:'toyroom'},{id:'ice',special:true,list:cur('ice'),boss:true,btype:'icebat',count:6,theme:'ice'}];
+const FREE=[{id:'board',board:true},{id:'tricky',tricky:true,count:20},{id:'bee',bees:true,special:true,keys:'asdfghjklñqwertyuiop',count:24,theme:'meadow'},{id:'hallo',special:true,list:cur('hallo'),count:8,theme:'halloween'},{id:'toys',special:true,list:cur('toys'),boss:true,btype:'jack',count:6,theme:'toyroom'},{id:'ice',special:true,list:cur('ice'),count:8,theme:'ice'}];
 const ALL=FREE.concat(LEVELS,PADS,SECRETS);
 const GEN=[];
 function genLevel(n){const th=['day','night','cave','sky'][n%4],harder=Math.min(n,12);
@@ -600,8 +600,9 @@ function ensureGens(){let done=0;for(const g of GEN)if((best[g.id+'@'+lang]||0)>
 const KEYSEQ=()=>{ensureGens();return LEVELS.concat(GEN)};
 let menuTab='keys';
 let found=store.get('rt-found',{}), unlockAll=store.get('rt-unlock',false), realCoins=store.get('rt-real',{}), owed=store.get('rt-owed',0);
-const BK=L=>(L.pad||L.board)?L.id:L.id+'@'+lang;
-(function migrate(){let ch=false;for(const k of Object.keys(best)){if(k.includes('@')||/^p\d$|^board$/.test(k))continue;if(best[k+'@ca']==null)best[k+'@ca']=best[k];delete best[k];ch=true}
+const BK=L=>(L.pad||L.board||L.id==='l0')?L.id:L.id+'@'+lang;
+if(!best.l0){best.l0=3;try{localStorage.setItem('rt-stars',JSON.stringify(best))}catch(e){}} // he already knows how to type his name: never make him redo it
+(function migrate(){let ch=false;for(const k of Object.keys(best)){if(k.includes('@')||/^p\d$|^board$|^l0$/.test(k))continue;if(best[k+'@ca']==null)best[k+'@ca']=best[k];delete best[k];ch=true}
   for(const k of Object.keys(realCoins)){if(k.includes('@')||/^p\d$/.test(k))continue;if(realCoins[k+'@ca']==null)realCoins[k+'@ca']=realCoins[k];delete realCoins[k];ch=true}
   if(ch){store.set('rt-stars',best);store.set('rt-real',realCoins)}})();
 const langStars=c=>Object.entries(best).filter(([k])=>k.endsWith('@'+c)).reduce((a,[,v])=>a+v,0);
@@ -1022,7 +1023,7 @@ function buildQueue(L){
     return pick.map(([w,e,ph])=>({chars:[...w.toLowerCase()],word:w,emoji:e,photo:ph||null,mode:L.wmode}))}
   if(L.sum){const q2=[];for(let i=0;i<L.count;i++){const a=1+Math.floor(Math.random()*5),b=1+Math.floor(Math.random()*Math.min(4,9-a));const em=Object.keys(CNT);q2.push({chars:[String(a+b)],word:String(a+b),sumA:a,sumB:b,countEmo:em[Math.floor(Math.random()*em.length)]})}return q2}
   if(L.tricky){const tk=trickyKeys();const q2=[];let last='';for(let i=0;i<L.count;i++){let c=tk[Math.floor(Math.random()*tk.length)];if(c===last)c=tk[(tk.indexOf(c)+1)%tk.length];q2.push({chars:[c]});last=c}return q2}
-  if(L.caps){const base=['Eliot','Mama','Papa','Puaaaa'].concat(T[lang].words.slice(0,8).map(w=>w[0][0]+w[0].slice(1).toLowerCase()));
+  if(L.caps){const base=['Eliot','Mama','Papa'].concat(T[lang].words.slice(0,8).map(w=>w[0][0]+w[0].slice(1).toLowerCase()));
     return shuffle(base.slice()).slice(0,L.count).map(w=>({chars:[...w],word:w,emoji:(FAMPH[w.toUpperCase()]?'':(T[lang].words.find(x=>x[0]===w.toUpperCase())||['','🔤'])[1]),photo:FAMPH[w.toUpperCase()]?FAMPH[w.toUpperCase()][0]:null,caps:true}))}
   if(L.counting){const ds=shuffle('123456789'.split('')).concat(shuffle('12345'.split(''))).slice(0,L.count),em=Object.keys(CNT);
     return ds.map(d=>{const e=em[Math.floor(Math.random()*em.length)];return {chars:[d],word:d,countEmo:e}})}
@@ -1048,7 +1049,8 @@ function newGame(li){
   if(L.boss)G.boss={x:W-190,hp:G.total,max:G.total,pause:2.2,dead:0,flash:0};
   document.getElementById('screen').classList.toggle('bossmode',!!L.boss);
   hideOverlays();ac();if(L.pad){padStart();return}if(L.board){boardStart();return}spawnGroup();
-  if(L.id==='toys'||L.id==='ice')setTimeout(()=>speak(T[lang][L.id+'Say']+' '+T[lang].bossIntroN(bname(L))),50);
+  if(L.id==='toys')setTimeout(()=>speak(T[lang].toysSay+' '+T[lang].bossIntroN(bname(L))),50);
+  else if(L.id==='ice')setTimeout(()=>speak(T[lang].iceSay),50);
   else if(L.boss)setTimeout(()=>speak(T[lang].bossIntroN(bname(L))),50);
   else if(L.secret)setTimeout(()=>speak(T[lang].secretWorld),50);
   else if(L.id==='hallo')setTimeout(()=>speak(T[lang].halloSay),50);
@@ -1144,6 +1146,7 @@ function onHit(b){
   react('happy','good','✓');G.typed++;G.catJump=1;if(Math.random()<.35)setTimeout(sfx.meow,180);
   const n=(G.L.num?parseInt(b.ch,10):1)*(G.L.coinMult||1)+(b.goldQ?5:0);
   addCoins(n,b.wx,BY-10);sfx.coin();G.ci++;
+  if(G.L.theme==='ice')swordSlash();
   const gs=G.group.syl;if(gs&&gs.length>1){let acc=0;for(const x of gs){acc+=x.length;if(acc===G.ci){speak(x.toLowerCase(),G.L.say);break}}}
   if(b.goldQ){burst(b.wx-G.worldX,BY,30);G.banner={text:T[lang].gold(n),t:0};react('wow','wow','★',1.6);setTimeout(sfx.power,100)}
   const k=KEYEL[b.ch.toLowerCase()]||KEYEL[(ACC[b.ch]||[])[1]];if(k){k.classList.add('right');setTimeout(()=>k.classList.remove('right'),250)}
@@ -1234,6 +1237,19 @@ function swordSlash(){G.swordT=.3;tone(1200,.06,'triangle',.05,0,600);
   const tg=(G.turtles||[]).filter(q=>!q.hit&&q.x<HERO_X+460).sort((a,b)=>a.x-b.x)[0];
   if(tg){tg.hit=.001;burst(tg.x,tg.y,16);tone(300,.1,'square',.07,.03,900);tone(900,.08,'sine',.06,.08,1500);G.slain=(G.slain||0)+1;
     if(G.slain%5===0)G.banner={text:'⚔️ '+G.slain+' 🐢',t:0}}}
+function drawIceCastle(cx,t,open){ctx.save();ctx.strokeStyle='#16204a';ctx.lineWidth=3;ctx.lineJoin='round';const g=GROUND;
+  const tower=(x,w,h,col)=>{ctx.fillStyle=col;rr(x-w/2,g-h,w,h,4);ctx.fill();ctx.stroke();ctx.fillStyle='#9d8bff';ctx.beginPath();ctx.moveTo(x-w/2-6,g-h);ctx.lineTo(x,g-h-w*1.3);ctx.lineTo(x+w/2+6,g-h);ctx.closePath();ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x,g-h-w*1.3);ctx.lineTo(x,g-h-w*1.3-22);ctx.stroke();ctx.fillStyle='#ff4f5e';ctx.beginPath();ctx.moveTo(x,g-h-w*1.3-22);ctx.lineTo(x+16+Math.sin(t*5)*3,g-h-w*1.3-16);ctx.lineTo(x,g-h-w*1.3-10);ctx.closePath();ctx.fill();ctx.stroke();
+    ctx.fillStyle=open?'#ffe066':'#5fa8de';rr(x-7,g-h+18,14,20,7);ctx.fill();ctx.stroke()};
+  tower(cx-95,46,175,'#cfeeff');tower(cx+95,46,175,'#cfeeff');
+  ctx.fillStyle='#e6f7ff';rr(cx-80,g-120,160,120,4);ctx.fill();ctx.stroke();
+  ctx.fillStyle='#e6f7ff';for(let i=0;i<5;i++){rr(cx-80+i*34,g-136,22,18,3);ctx.fill();ctx.stroke()}
+  tower(cx,58,205,'#bfe6ff');
+  ctx.fillStyle=open?'#ffe066':'#16204a';ctx.beginPath();ctx.moveTo(cx-26,g);ctx.lineTo(cx-26,g-46);ctx.arc(cx,g-46,26,Math.PI,0);ctx.lineTo(cx+26,g);ctx.closePath();ctx.fill();ctx.stroke();
+  if(open){ctx.globalAlpha=.35+.25*Math.sin(t*6);ctx.fillStyle='#fff7a8';ctx.beginPath();ctx.arc(cx,g-40,70,0,7);ctx.fill();ctx.globalAlpha=1}
+  ctx.fillStyle='#ffffff';for(const [x,y,w] of [[cx-95,g-175,50],[cx+95,g-175,50],[cx,g-205,62],[cx,g-136,160]]){ctx.beginPath();ctx.ellipse(x,y,w/2,6,0,Math.PI,0);ctx.fill()}
+  ctx.fillStyle='#ffffff';for(let i=0;i<6;i++){const sx=cx-70+i*28,sy=g-120+Math.sin(t*2+i)*2;ctx.globalAlpha=.6+.4*Math.sin(t*3+i);ctx.beginPath();ctx.arc(sx,sy-30-hash(i)*40,2.5,0,7);ctx.fill()}ctx.globalAlpha=1;
+  ctx.restore()}
 function drawSword(x,feet,sw){const k=sw>0?1-sw/.3:1,a=sw>0?-2.3+k*3.0:-.75;ctx.save();ctx.translate(x+20,feet-42);
   if(sw>0){ctx.globalAlpha=.55*(sw/.3);ctx.strokeStyle='#e8fbff';ctx.lineWidth=14;ctx.lineCap='round';ctx.beginPath();ctx.arc(0,0,52,-2.3,a);ctx.stroke();ctx.globalAlpha=1}
   ctx.rotate(a);ctx.strokeStyle='#16204a';ctx.lineWidth=2.5;ctx.lineJoin='round';
@@ -1262,6 +1278,7 @@ function cont(){
   if(G.ci<G.group.chars.length){G.state='run';updateTargetUI();return}
   if(G.group.word)wordDone();
   G.done++;
+  if(!G.queue.length&&G.L.theme==='ice'){G.state='end';updateTargetUI();G.castleWalk=1;(G.turtles||[]).forEach(q=>{if(!q.hit){q.hit=.001;burst(q.x,q.y,10)}});return}
   if(!G.queue.length){G.state='end';updateTargetUI();burst(HERO_X,GROUND-60,60);setTimeout(showWin,900);return}
   spawnGroup();
 }
@@ -1302,6 +1319,10 @@ function update(f,dt){
   if(G.fridge){if(G.fridge.open>0)G.fridge.open-=dt;if(G.fridge.food){G.fridge.food.t+=dt;if(G.fridge.food.t>1.1)G.fridge.food=null}}
   if(G.L.theme==='ice'&&G.state!=='end'&&!G.pad){G.iceSpawn=(G.iceSpawn==null?.6:G.iceSpawn)-dt;if(G.iceSpawn<=0){G.iceSpawn=1.1+Math.random()*1.1;if(!G.turtles)G.turtles=[];if(G.turtles.filter(q=>!q.hit).length<7)G.turtles.push(iceTurtle())}}
   if(G.swordT>0)G.swordT=Math.max(0,G.swordT-dt);
+  if(G.L.theme==='ice'&&!G.pad){const prog=G.total?G.done/G.total:0,tgt=G.castleWalk?W-190:W-150+(1-prog)*560;if(G.castleX==null)G.castleX=W+420;G.castleX+=(tgt-G.castleX)*Math.min(1,dt*1.6);
+    if(G.castleWalk&&!G.castleIn){G.heroDX=Math.min((G.heroDX||0)+150*dt,G.castleX-HERO_X);G.hero.frame+=f;
+      if(G.heroDX>=G.castleX-HERO_X-2&&Math.abs(G.castleX-tgt)<6){G.castleIn=1;for(let k=0;k<5;k++)setTimeout(()=>{if(G){burst(G.castleX-90+Math.random()*180,90+Math.random()*80,36);tone(600+Math.random()*500,.2,'triangle',.06,0,1500)}},k*260);
+        sfx.power();react('wow','wow','★',2);setTimeout(()=>speak(T[lang].castleSay),200);setTimeout(showWin,2600)}}}
   if(G.turtles){const live=G.turtles.filter(q=>q.ice&&!q.hit).sort((a,b)=>a.x-b.x);
     for(const q of G.turtles){if(q.hit){q.hit+=dt;q.x+=6*f;q.y-=8*f;q.spin=(q.spin||0)+.4*f}else if(q.ice){const stop=HERO_X+70+live.indexOf(q)*58;q.x=Math.max(stop,q.x+q.vx*f)}else q.x+=q.vx*f;q.t+=dt}
     G.turtles=G.turtles.filter(q=>q.x>-80&&q.y>-90&&!(q.hit>1.6))}
@@ -1318,10 +1339,11 @@ function render(t){
   if(G&&G.shake&&!reduce)ctx.translate((Math.random()-.5)*G.shake,0);
   const wx=G?G.worldX:attract.x;drawBG(wx,t,G?G.L.theme:null);
   if(!G){drawAmbientBees(attract.frame/60,'day');drawCat(HERO_X-78,GROUND,attract.frame/60,'run',0);drawHero(HERO_X,GROUND,Math.floor(attract.frame/120)%5,attract.frame,'run',0);ctx.restore();return}
+  if(G.L.theme==='ice'&&!G.pad&&G.castleX!=null)drawIceCastle(G.castleX,G.t,!!G.castleIn);
   const cur=G.state!=='end'?targetBlock():null;
   for(const b of G.blocks){const sx=b.wx-G.worldX;if(sx<-60||sx>W+60||b.inv)continue;drawCube(b,sx,G.t,b===cur&&G.state==='wait',G.group&&G.group.word&&!b.hit&&b!==cur)}
   for(const c of G.coinFx)drawCoin(c.x-G.worldX,c.y,c.t,1-c.t/.7);
-  const mode=G.zapT>0?'power':G.state==='jump'?'jump':(G.state==='run'?'run':(G.state==='power'?'power':'idle'));
+  const mode=G.castleWalk&&!G.castleIn?'run':G.zapT>0?'power':G.state==='jump'?'jump':(G.state==='run'?'run':(G.state==='power'?'power':'idle'));
   const bob=mode==='idle'?Math.sin(G.t*4)*1.5:0;
   if(G.state==='power'){ // morph sequence: spinning colour rays + lightning
     const p=1-G.powerT/1.4;ctx.save();ctx.translate(HERO_X,GROUND-45);ctx.rotate(reduce?0:G.t*1.5);
@@ -1335,10 +1357,11 @@ function render(t){
   if(G.fridge){drawFridge(760,G.t,mode==='run',G.fridge.open);const fd=G.fridge.food;if(fd){const k=Math.min(1,fd.t/1),fx=760+(HERO_X-760)*k,fy=GROUND-90-Math.sin(k*Math.PI)*140;ctx.save();ctx.font='40px sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(fd.e,fx,fy);ctx.restore()}}
   drawAmbientBees(G.t,G.L.theme||'day');
   if(G.pad)drawPad(G.t);
-  if(!(G.pad&&G.L.pad==='drag'))drawCat(HERO_X-78,GROUND,G.t,mode==='run'?'run':'idle',G.catJump||0);
+  const HX=HERO_X+(G.heroDX||0);
+  if(!(G.pad&&G.L.pad==='drag'))drawCat(HX-78,GROUND,G.t,mode==='run'?'run':'idle',G.catJump||0);
   if(G.pad&&G.L.pad==='scroll')drawHero(HERO_X,G.pad.heroY,G.hero.color,G.hero.frame,G.pad.heroY<GROUND-4?'jump':'idle',.6);
-  else drawHero(HERO_X,GROUND+G.hero.y+bob,G.hero.color,G.hero.frame,mode,G.glow);
-  if(G.L.theme==='ice'&&!G.pad)drawSword(HERO_X,GROUND+G.hero.y+bob,G.swordT||0);
+  else if(!G.castleIn)drawHero(HX,GROUND+G.hero.y+bob,G.hero.color,G.hero.frame,mode,G.glow);
+  if(G.L.theme==='ice'&&!G.pad&&!G.castleIn)drawSword(HX,GROUND+G.hero.y+bob,G.swordT||0);
   if(G.swarm)drawSwarm(G.t,HERO_X,GROUND+G.hero.y);
   if(G.turtles)for(const q of G.turtles)drawTurtle(q);
   if(G.board)drawBoard(G.t);
@@ -1401,7 +1424,7 @@ let tokens=store.get('rt-tokens',0);
 const tokHTML=n=>'<span class="tokens">'+[0,1,2].map(i=>'<i class="'+(i<n?'on':'')+'">★</i>').join('')+'</span>';
 const capsHTML=str=>[...str].map(c=>'<span class="cap" style="--fc:var(--f-'+((FINGER[c.toLowerCase()]||{}).f||'thumb')+')">'+c.toUpperCase()+'</span>').join('');
 function tilePics(L){
-  if(L.id==='fam'&&FACES.mama1)return '<img class="tface" src="'+FACES.mama1+'" alt=""><img class="tface" src="'+FACES.papa1+'" alt="">'+(FACES.hen?'<img class="tface" src="'+FACES.hen+'" alt="">':'');
+  if(L.id==='fam'&&FACES.mama1)return '<img class="tface" src="'+FACES.mama1+'" alt=""><img class="tface" src="'+FACES.papa1+'" alt="">';
   if(L.pad)return '<span class="pic">'+L.pics+'</span>';
   if(L.board)return '<span class="pic">🪄🔤</span>';
   if(L.tricky)return capsHTML(trickyKeys().slice(0,4).join(''));

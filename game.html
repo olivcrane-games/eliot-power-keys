@@ -133,7 +133,7 @@ canvas{display:block;width:100%;height:100%}
 .lvls .stars{font-size:13px;letter-spacing:.04em;-webkit-text-stroke:0}
 .lvls .wnum{width:22px;height:22px;font-size:12px;top:-14px;left:6px}
 .st-on{color:var(--gold);-webkit-text-stroke:1px var(--ink)} .st-off{color:#c9cfe6}
-.overlay#menu{background:rgba(22,32,74,.88);gap:8px}
+.overlay#menu{background:rgba(22,32,74,.88);gap:8px;container-type:size}
 .overlay#menu .fj .cap{width:36px;height:36px;font-size:21px} .overlay#menu .fj .finger-ico{font-size:26px} .overlay#menu .tip{font-size:14px}
 .tabs{display:flex;gap:8px;justify-content:center}
 .tab{font-family:var(--display);font-size:17px;background:var(--deck2);color:var(--white);border:3px solid var(--ink);border-radius:999px;padding:4px 16px;cursor:pointer;box-shadow:0 3px 0 var(--ink)}
@@ -186,8 +186,8 @@ canvas{display:block;width:100%;height:100%}
 #screen.menuon .react{display:none}
 .bigplay:active{transform:translateY(4px);box-shadow:0 4px 0 var(--ink)}
 @keyframes breathe{50%{transform:scale(1.05)}}
-.homerow{display:flex;gap:clamp(10px,2vw,20px);flex-wrap:wrap;justify-content:center}
-.hb{width:clamp(70px,10vw,100px);height:clamp(70px,10vw,100px);border-radius:24px;background:var(--white);border:4px solid var(--ink);box-shadow:0 6px 0 var(--ink);font-size:clamp(34px,5vw,50px);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.homerow{display:flex;gap:clamp(6px,1.2vw,14px);flex-wrap:nowrap;justify-content:center}
+.hb{flex:0 0 auto;width:clamp(40px,min(10cqw,19cqh),84px);height:clamp(40px,min(10cqw,19cqh),84px);border-radius:20px;background:var(--white);border:4px solid var(--ink);box-shadow:0 6px 0 var(--ink);font-size:clamp(22px,min(5cqw,9.5cqh),42px);cursor:pointer;display:flex;align-items:center;justify-content:center}
 .hb:hover,.node:not(:disabled):hover{transform:translateY(-3px)}
 .hb:active{transform:translateY(3px);box-shadow:0 2px 0 var(--ink)}
 .hb.small{width:52px;height:52px;font-size:26px;border-radius:14px;box-shadow:0 4px 0 var(--ink)}
@@ -235,6 +235,8 @@ canvas{display:block;width:100%;height:100%}
 .pgtok{display:flex;align-items:center;gap:8px;justify-content:center}.pgtok .tokens{margin:0}.pgtok .tokens i{width:26px;height:26px;font-size:14px;color:#c9cfe6}
 .fstar{position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);font-family:var(--display);font-weight:400;font-size:11px;border-radius:8px;padding:0 5px;white-space:nowrap;line-height:1.4}
 .gicon{font-size:clamp(24px,3.4vw,38px)!important}.gnum{position:absolute;top:-8px;left:-8px;background:var(--gold);border:3px solid var(--ink);border-radius:50%;width:28px;height:28px;font-size:14px;display:flex;align-items:center;justify-content:center}
+.hb.toys{background:#ffd6a0;box-shadow:0 6px 0 var(--ink),0 0 16px 3px rgba(255,111,168,.55)}
+.hb.ice{background:#cfeeff;box-shadow:0 6px 0 var(--ink),0 0 16px 3px rgba(120,220,255,.7)}
 .hb.hallo{background:#2a1245;box-shadow:0 6px 0 var(--ink),0 0 16px 3px rgba(255,138,31,.6)}
 #studio{z-index:6}
 .stcard{background:var(--white);color:var(--ink);border:4px solid var(--ink);border-radius:18px;box-shadow:0 6px 0 var(--ink);padding:12px 16px;display:flex;flex-direction:column;gap:10px;align-items:center;max-height:100%;overflow:auto}
@@ -370,7 +372,7 @@ const FAMPH={MAMA:['mama1','mama2'],PAPA:['papa1','papa2','papa3'],PUAAAA:['hen'
 const SYL1=['MA','ME','MI','MO','MU','PA','PE','PI','PO','PU','SA','SE','SI','SO','SU','LA','LE','LI','LO','LU'].map(x=>[x,'🗣️',null,[x]]);
 const syl=(w,e,parts)=>[w,e,null,parts];
 const T={
- ca:{name:'Català',bossIntroN:n=>'Ve '+n+'! Escriu les paraules per fer-li zap!',bossBeatN:n=>'Has guanyat '+n+'!',hallo:[['CARBASSA','🎃'],['BRUIXA','🧙'],['FANTASMA','👻'],['RATPENAT','🦇'],['ARANYA','🕷️'],['GAT','🐈‍⬛'],['LLUNA','🌕'],['ESCOMBRA','🧹'],['CARAMEL','🍬'],['BUUU','👻']],halloSay:'Feliç Halloween, Eliot! Buuu!',beeSay:'Cada lletra fa sortir una abella!',turtle:'Tortuga voladora estúpida!',modeHint:{fade:'Recorda la paraula!',pic:'Escriu el nom del dibuix',dict:'Escolta i escriu',read:'Prem 1, 2 o 3'},readSay:'Llegeix la paraula i tria el dibuix!',tokenSay:n=>"Estrella d'or! "+(n===1?'Només en falta una':'En falten '+n)+' per a una moneda de veritat!',play:'Juga!',gold:n=>'+'+n+' OR!',capsHint:l=>'Majúscula! Mantén ⇧ i prem '+l,accHint:(a,v)=>'Prem '+a+' i després '+v,sumSay:(a,b)=>a+' més '+b+'?',sumHint:'Suma! Quants en fan?',accents:[['CAFÈ','☕'],['PASTÍS','🎂'],['MÀ','✋'],['CAMIÓ','🚚'],['LLEÓ','🦁'],['AVIÓ','✈️'],['MELÓ','🍈'],['TOMÀQUET','🍅']],boardSay:'Pissarra màgica! Escriu el que vulguis!',boardHint:'🪄 Escriu el que vulguis. Prem espai per escoltar la paraula.',menu:'Mons',sound:'So',voice:'Veu',tabKeys:'Teclat',tabPad:'Trackpad',
+ ca:{name:'Català',bossIntroN:n=>'Ve '+n+'! Escriu les paraules per fer-li zap!',bossBeatN:n=>'Has guanyat '+n+'!',toys:[['ROBOT','🤖'],['PILOTA','⚽'],['OSSET','🧸'],['COTXE','🚗'],['TREN','🚂'],['DAU','🎲'],['CAVALL','🐴'],['TAMBOR','🥁'],['GLOBUS','🎈'],['COET','🚀']],ice:[['NEU','❄️'],['GEL','🧊'],['FOCA','🦭'],['TRINEU','🛷'],['GUANTS','🧤'],['BUFANDA','🧣'],['PATINS','⛸️'],['CASTELL','🏰'],['ESTEL','⭐'],['LLUNA','🌙']],toysSay:'Les joguines es desperten, Eliot!',iceSay:'Benvingut al Regne de Gel, Eliot!',hallo:[['CARBASSA','🎃'],['BRUIXA','🧙'],['FANTASMA','👻'],['RATPENAT','🦇'],['ARANYA','🕷️'],['GAT','🐈‍⬛'],['LLUNA','🌕'],['ESCOMBRA','🧹'],['CARAMEL','🍬'],['BUUU','👻']],halloSay:'Feliç Halloween, Eliot! Buuu!',beeSay:'Cada lletra fa sortir una abella!',turtle:'Tortuga voladora estúpida!',modeHint:{fade:'Recorda la paraula!',pic:'Escriu el nom del dibuix',dict:'Escolta i escriu',read:'Prem 1, 2 o 3'},readSay:'Llegeix la paraula i tria el dibuix!',tokenSay:n=>"Estrella d'or! "+(n===1?'Només en falta una':'En falten '+n)+' per a una moneda de veritat!',play:'Juga!',gold:n=>'+'+n+' OR!',capsHint:l=>'Majúscula! Mantén ⇧ i prem '+l,accHint:(a,v)=>'Prem '+a+' i després '+v,sumSay:(a,b)=>a+' més '+b+'?',sumHint:'Suma! Quants en fan?',accents:[['CAFÈ','☕'],['PASTÍS','🎂'],['MÀ','✋'],['CAMIÓ','🚚'],['LLEÓ','🦁'],['AVIÓ','✈️'],['MELÓ','🍈'],['TOMÀQUET','🍅']],boardSay:'Pissarra màgica! Escriu el que vulguis!',boardHint:'🪄 Escriu el que vulguis. Prem espai per escoltar la paraula.',menu:'Mons',sound:'So',voice:'Veu',tabKeys:'Teclat',tabPad:'Trackpad',
    tip:"Eliot, posa els dits índex a la <mark>F</mark> i a la <mark>J</mark>. Hi notaràs una ratlleta!",
    done:'Molt bé, Eliot!',next:'Següent món',again:'Torna-hi',realCoin:'MONEDA DE VERITAT!',secretPipe:'Canonada secreta',
    power:()=>'PODER ELIOT!',powerSay:c=>"L'Eliot es torna "+c.toLowerCase()+'!',colors:['VERMELL','BLAU','GROC','VERD','ROSA'],
@@ -400,7 +402,7 @@ const T={
    boss2:[['PODER','💪'],['ELIOT','🦸'],['ZAP','⚡'],['ESTEL','⭐'],['SALTA','🦘'],['ROBOT','🤖']],
    star:[['ELIOT','🦸'],['ESTEL','⭐'],['LLUNA','🌙'],['ZAP','⚡'],['ROBOT','🤖'],['VOLA','🦅']],
    syl2:[syl('CASA','🏠',['CA','SA']),syl('LLUNA','🌙',['LLU','NA']),syl('POMA','🍎',['PO','MA']),syl('VACA','🐄',['VA','CA']),syl('ROSA','🌹',['RO','SA']),syl('FOCA','🦭',['FO','CA']),syl('PILOTA','⚽',['PI','LO','TA']),syl('GALETA','🍪',['GA','LE','TA']),syl('FORÇA','💪',['FOR','ÇA'])]},
- es:{name:'Español',bossIntroN:n=>'¡Llega '+n+'! ¡Escribe las palabras para hacerle zap!',bossBeatN:n=>'¡Has vencido a '+n.replace(/^el /,'')+'!',hallo:[['CALABAZA','🎃'],['BRUJA','🧙'],['FANTASMA','👻'],['ARAÑA','🕷️'],['GATO','🐈‍⬛'],['LUNA','🌕'],['ESCOBA','🧹'],['DULCE','🍬'],['CARAMELO','🍭'],['BUUU','👻']],halloSay:'¡Feliz Halloween, Eliot! ¡Buuu!',beeSay:'¡Cada letra suelta una abeja!',turtle:'¡Estúpida tortuga voladora!',modeHint:{fade:'¡Recuerda la palabra!',pic:'Escribe el nombre del dibujo',dict:'Escucha y escribe',read:'Pulsa 1, 2 o 3'},readSay:'¡Lee la palabra y elige el dibujo!',tokenSay:n=>'¡Estrella de oro! ¡'+(n===1?'Solo falta una':'Faltan '+n)+' para una moneda de verdad!',play:'¡A jugar!',gold:n=>'¡+'+n+' ORO!',capsHint:l=>'¡Mayúscula! Mantén ⇧ y pulsa '+l,accHint:(a,v)=>'Pulsa '+a+' y luego '+v,sumSay:(a,b)=>a+' más '+b+'?',sumHint:'¡Suma! ¿Cuántos son?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['CAMIÓN','🚚'],['LIMÓN','🍋'],['RATÓN','🐭'],['MAMÁ','👩'],['PAPÁ','👨']],boardSay:'¡Pizarra mágica! ¡Escribe lo que quieras!',boardHint:'🪄 Escribe lo que quieras. Pulsa espacio para escuchar la palabra.',menu:'Mundos',sound:'Sonido',voice:'Voz',tabKeys:'Teclado',tabPad:'Trackpad',
+ es:{name:'Español',bossIntroN:n=>'¡Llega '+n+'! ¡Escribe las palabras para hacerle zap!',bossBeatN:n=>'¡Has vencido a '+n.replace(/^el /,'')+'!',toys:[['ROBOT','🤖'],['PELOTA','⚽'],['OSITO','🧸'],['COCHE','🚗'],['TREN','🚂'],['DADO','🎲'],['CABALLO','🐴'],['TAMBOR','🥁'],['GLOBO','🎈'],['COHETE','🚀']],ice:[['NIEVE','❄️'],['HIELO','🧊'],['FOCA','🦭'],['TRINEO','🛷'],['GUANTES','🧤'],['BUFANDA','🧣'],['PATINES','⛸️'],['CASTILLO','🏰'],['ESTRELLA','⭐'],['LUNA','🌙']],toysSay:'¡Los juguetes se despiertan, Eliot!',iceSay:'¡Bienvenido al Reino de Hielo, Eliot!',hallo:[['CALABAZA','🎃'],['BRUJA','🧙'],['FANTASMA','👻'],['ARAÑA','🕷️'],['GATO','🐈‍⬛'],['LUNA','🌕'],['ESCOBA','🧹'],['DULCE','🍬'],['CARAMELO','🍭'],['BUUU','👻']],halloSay:'¡Feliz Halloween, Eliot! ¡Buuu!',beeSay:'¡Cada letra suelta una abeja!',turtle:'¡Estúpida tortuga voladora!',modeHint:{fade:'¡Recuerda la palabra!',pic:'Escribe el nombre del dibujo',dict:'Escucha y escribe',read:'Pulsa 1, 2 o 3'},readSay:'¡Lee la palabra y elige el dibujo!',tokenSay:n=>'¡Estrella de oro! ¡'+(n===1?'Solo falta una':'Faltan '+n)+' para una moneda de verdad!',play:'¡A jugar!',gold:n=>'¡+'+n+' ORO!',capsHint:l=>'¡Mayúscula! Mantén ⇧ y pulsa '+l,accHint:(a,v)=>'Pulsa '+a+' y luego '+v,sumSay:(a,b)=>a+' más '+b+'?',sumHint:'¡Suma! ¿Cuántos son?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['CAMIÓN','🚚'],['LIMÓN','🍋'],['RATÓN','🐭'],['MAMÁ','👩'],['PAPÁ','👨']],boardSay:'¡Pizarra mágica! ¡Escribe lo que quieras!',boardHint:'🪄 Escribe lo que quieras. Pulsa espacio para escuchar la palabra.',menu:'Mundos',sound:'Sonido',voice:'Voz',tabKeys:'Teclado',tabPad:'Trackpad',
    tip:'Eliot, pon los dedos índice sobre la <mark>F</mark> y la <mark>J</mark>. ¡Tienen una rayita que se nota!',
    done:'¡Muy bien, Eliot!',next:'Siguiente mundo',again:'Otra vez',realCoin:'¡MONEDA DE VERDAD!',secretPipe:'Tubería secreta',
    power:()=>'¡PODER ELIOT!',powerSay:c=>'¡Eliot se vuelve '+c.toLowerCase()+'!',colors:['ROJO','AZUL','AMARILLO','VERDE','ROSA'],
@@ -430,7 +432,7 @@ const T={
    boss2:[['PODER','💪'],['ELIOT','🦸'],['ZAP','⚡'],['RAYO','🌩️'],['SALTA','🦘'],['ROBOT','🤖']],
    star:[['ELIOT','🦸'],['ESTRELLA','⭐'],['LUNA','🌙'],['ZAP','⚡'],['ROBOT','🤖'],['VUELA','🦅']],
    syl2:[syl('PATO','🦆',['PA','TO']),syl('CASA','🏠',['CA','SA']),syl('MESA','🪑',['ME','SA']),syl('LUNA','🌙',['LU','NA']),syl('SOPA','🍲',['SO','PA']),syl('GATO','🐱',['GA','TO']),syl('MONO','🐒',['MO','NO']),syl('PELO','💇',['PE','LO']),syl('TOMATE','🍅',['TO','MA','TE']),syl('PALOMA','🕊️',['PA','LO','MA'])]},
- de:{name:'Deutsch',bossIntroN:n=>n+' kommt! Tipp die Wörter, um ihn zu zappen!',bossBeatN:n=>'Du hast '+n+' besiegt!',hallo:[['HEXE','🧙'],['GEIST','👻'],['SPINNE','🕷️'],['KATZE','🐈‍⬛'],['MOND','🌕'],['BESEN','🧹'],['BONBON','🍬'],['NACHT','🌙'],['FLEDERMAUS','🦇'],['BUH','👻']],halloSay:'Fröhliches Halloween, Eliot! Buh!',beeSay:'Jeder Buchstabe lässt eine Biene fliegen!',turtle:'Doofe fliegende Schildkröte!',modeHint:{fade:'Merk dir das Wort!',pic:'Schreib den Namen vom Bild',dict:'Hör zu und schreib',read:'Drück 1, 2 oder 3'},readSay:'Lies das Wort und wähl das Bild!',tokenSay:n=>'Goldstern! Noch '+n+' bis zur echten Münze!',play:'Los geht’s!',gold:n=>'+'+n+' GOLD!',capsHint:l=>'Großbuchstabe! Halte ⇧ und drück '+l,accHint:(a,v)=>'Drück '+a+', dann '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Rechnen! Wie viele sind das?',accents:[['GRÜN','🟢'],['TÜR','🚪'],['KÄSE','🧀'],['BÄR','🐻'],['MÜDE','😴'],['FÜNF','🖐️'],['MÄUSE','🐭'],['BRÖTCHEN','🥖']],boardSay:'Zaubertafel! Schreib, was du willst!',boardHint:'🪄 Schreib, was du willst. Leertaste zum Anhören.',menu:'Welten',sound:'Ton',voice:'Stimme',tabKeys:'Tastatur',tabPad:'Trackpad',
+ de:{name:'Deutsch',bossIntroN:n=>n+' kommt! Tipp die Wörter, um ihn zu zappen!',bossBeatN:n=>'Du hast '+n+' besiegt!',toys:[['ROBOTER','🤖'],['BALL','⚽'],['TEDDY','🧸'],['AUTO','🚗'],['ZUG','🚂'],['PUPPE','🪆'],['PFERD','🐴'],['TROMMEL','🥁'],['BALLON','🎈'],['RAKETE','🚀']],ice:[['SCHNEE','❄️'],['EIS','🧊'],['ROBBE','🦭'],['SCHLITTEN','🛷'],['SCHAL','🧣'],['BURG','🏰'],['STERN','⭐'],['MOND','🌙'],['KALT','🥶'],['WINTER','⛄']],toysSay:'Die Spielsachen wachen auf, Eliot!',iceSay:'Willkommen im Eiskönigreich, Eliot!',hallo:[['HEXE','🧙'],['GEIST','👻'],['SPINNE','🕷️'],['KATZE','🐈‍⬛'],['MOND','🌕'],['BESEN','🧹'],['BONBON','🍬'],['NACHT','🌙'],['FLEDERMAUS','🦇'],['BUH','👻']],halloSay:'Fröhliches Halloween, Eliot! Buh!',beeSay:'Jeder Buchstabe lässt eine Biene fliegen!',turtle:'Doofe fliegende Schildkröte!',modeHint:{fade:'Merk dir das Wort!',pic:'Schreib den Namen vom Bild',dict:'Hör zu und schreib',read:'Drück 1, 2 oder 3'},readSay:'Lies das Wort und wähl das Bild!',tokenSay:n=>'Goldstern! Noch '+n+' bis zur echten Münze!',play:'Los geht’s!',gold:n=>'+'+n+' GOLD!',capsHint:l=>'Großbuchstabe! Halte ⇧ und drück '+l,accHint:(a,v)=>'Drück '+a+', dann '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Rechnen! Wie viele sind das?',accents:[['GRÜN','🟢'],['TÜR','🚪'],['KÄSE','🧀'],['BÄR','🐻'],['MÜDE','😴'],['FÜNF','🖐️'],['MÄUSE','🐭'],['BRÖTCHEN','🥖']],boardSay:'Zaubertafel! Schreib, was du willst!',boardHint:'🪄 Schreib, was du willst. Leertaste zum Anhören.',menu:'Welten',sound:'Ton',voice:'Stimme',tabKeys:'Tastatur',tabPad:'Trackpad',
    tip:'Eliot, leg deine Zeigefinger auf <mark>F</mark> und <mark>J</mark>. Da spürst du einen kleinen Strich!',
    done:'Super, Eliot!',next:'Nächste Welt',again:'Nochmal',realCoin:'ECHTE MÜNZE!',secretPipe:'Geheimes Rohr',
    power:()=>'ELIOT POWER!',powerSay:c=>'Eliot wird '+c.toLowerCase()+'!',colors:['ROT','BLAU','GELB','GRÜN','ROSA'],
@@ -460,7 +462,7 @@ const T={
    boss2:[['POWER','💪'],['ELIOT','🦸'],['ZAP','⚡'],['STERN','⭐'],['SPRING','🦘'],['ROBOTER','🤖']],
    star:[['ELIOT','🦸'],['STERN','⭐'],['MOND','🌙'],['ZAP','⚡'],['ROBOTER','🤖'],['FLIEG','🦅']],
    syl2:[syl('BANANE','🍌',['BA','NA','NE']),syl('TOMATE','🍅',['TO','MA','TE']),syl('NASE','👃',['NA','SE']),syl('ROSE','🌹',['RO','SE']),syl('HASE','🐰',['HA','SE']),syl('SONNE','☀️',['SON','NE']),syl('KATZE','🐱',['KAT','ZE']),syl('LAMPE','💡',['LAM','PE'])]},
- en:{name:'English',bossIntroN:n=>n[0].toUpperCase()+n.slice(1)+' is here! Type the words to zap!',bossBeatN:n=>'You beat '+n+'!',hallo:[['PUMPKIN','🎃'],['WITCH','🧙'],['GHOST','👻'],['BAT','🦇'],['SPIDER','🕷️'],['CAT','🐈‍⬛'],['MOON','🌕'],['BROOM','🧹'],['CANDY','🍬'],['BOO','👻']],halloSay:'Happy Halloween, Eliot! Boo!',beeSay:'Every letter lets a bee fly out!',turtle:'Stupid flying turtle!',modeHint:{fade:'Remember the word!',pic:'Type the name of the picture',dict:'Listen and type',read:'Press 1, 2 or 3'},readSay:'Read the word and pick the picture!',tokenSay:n=>'Gold star! '+n+' more for a real coin!',play:"Let's play!",gold:n=>'+'+n+' GOLD!',capsHint:l=>'Capital! Hold ⇧ and press '+l,accHint:(a,v)=>'Press '+a+' then '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Add them up! How many?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['LIMÓN','🍋'],['CAFÈ','☕'],['PASTÍS','🎂'],['GRÜN','🟢'],['BÄR','🐻']],boardSay:'Magic board! Type anything you like!',boardHint:'🪄 Type anything. Press space to hear the word.',menu:'Worlds',sound:'Sound',voice:'Voice',tabKeys:'Keyboard',tabPad:'Trackpad',
+ en:{name:'English',bossIntroN:n=>n[0].toUpperCase()+n.slice(1)+' is here! Type the words to zap!',bossBeatN:n=>'You beat '+n+'!',toys:[['ROBOT','🤖'],['BALL','⚽'],['TEDDY','🧸'],['CAR','🚗'],['TRAIN','🚂'],['BLOCKS','🧱'],['HORSE','🐴'],['DRUM','🥁'],['BALLOON','🎈'],['ROCKET','🚀']],ice:[['SNOW','❄️'],['ICE','🧊'],['SEAL','🦭'],['SLED','🛷'],['GLOVES','🧤'],['SCARF','🧣'],['SKATES','⛸️'],['CASTLE','🏰'],['STAR','⭐'],['COLD','🥶']],toysSay:'The toys are waking up, Eliot!',iceSay:'Welcome to the Ice Kingdom, Eliot!',hallo:[['PUMPKIN','🎃'],['WITCH','🧙'],['GHOST','👻'],['BAT','🦇'],['SPIDER','🕷️'],['CAT','🐈‍⬛'],['MOON','🌕'],['BROOM','🧹'],['CANDY','🍬'],['BOO','👻']],halloSay:'Happy Halloween, Eliot! Boo!',beeSay:'Every letter lets a bee fly out!',turtle:'Stupid flying turtle!',modeHint:{fade:'Remember the word!',pic:'Type the name of the picture',dict:'Listen and type',read:'Press 1, 2 or 3'},readSay:'Read the word and pick the picture!',tokenSay:n=>'Gold star! '+n+' more for a real coin!',play:"Let's play!",gold:n=>'+'+n+' GOLD!',capsHint:l=>'Capital! Hold ⇧ and press '+l,accHint:(a,v)=>'Press '+a+' then '+v,sumSay:(a,b)=>a+' plus '+b+'?',sumHint:'Add them up! How many?',accents:[['CAFÉ','☕'],['LEÓN','🦁'],['AVIÓN','✈️'],['LIMÓN','🍋'],['CAFÈ','☕'],['PASTÍS','🎂'],['GRÜN','🟢'],['BÄR','🐻']],boardSay:'Magic board! Type anything you like!',boardHint:'🪄 Type anything. Press space to hear the word.',menu:'Worlds',sound:'Sound',voice:'Voice',tabKeys:'Keyboard',tabPad:'Trackpad',
    tip:'Eliot, rest your pointer fingers on <mark>F</mark> and <mark>J</mark>. You can feel a little bump on them!',
    done:'Great job, Eliot!',next:'Next world',again:'Play again',realCoin:'REAL COIN!',secretPipe:'Secret pipe',
    power:()=>'ELIOT POWER!',powerSay:c=>c.toLowerCase()+' power, Eliot!',colors:['RED','BLUE','YELLOW','GREEN','PINK'],
@@ -517,7 +519,7 @@ let cheerAudio=null;
 function playCheer(prob){if(!clips.length||!voiceOn||Math.random()>prob)return false;const c=clips[Math.floor(Math.random()*clips.length)];
   try{speechSynthesis.cancel();if(cheerAudio){cheerAudio.pause()}cheerAudio=new Audio(URL.createObjectURL(c.blob));cheerAudio.play().catch(()=>{})}catch(e){return false}return true}
 
-const LN={b3:['Boss: Gloop','Jefe: Gloop','Boss: Gloop','Boss: Gloop'],b4:['Boss: Rovelló','Jefe: Rovelló','Boss: Rosti','Boss: Rusty'],b5:['Boss: Fumet','Jefe: Fumet','Boss: Fumi','Boss: Smokey'],b6:['Boss: Rei Carbassa','Jefe: Rey Calabaza','Boss: König Kürbis','Boss: Pumpkin King'],bee:['Abelles','Abejas','Bienen','Bees'],hallo:['Halloween','Halloween','Halloween','Halloween'],wfade:['Paraula amagada','Palabra escondida','Versteckte Wörter','Hidden words'],wpic:['Què és?','¿Qué es?','Was ist das?','What is it?'],wdict:['Dictat','Dictado','Diktat','Listen & type'],wread:['Llegeix','Lee','Lies','Read it'],tricky:['Lletres difícils','Letras difíciles','Knifflige Buchstaben','Tricky letters'],sum:['Sumes','Sumas','Plusrechnen','Sums'],caps:['Majúscules','Mayúsculas','Großbuchstaben','Capital letters'],acc:['Accents','Acentos','Umlaute','Accents'],board:['Pissarra màgica','Pizarra mágica','Zaubertafel','Magic board'],l0:['El meu nom','Mi nombre','Mein Name','My name'],fam:['Família','Familia','Familie','Family'],l1:['Fila de casa esquerra','Fila central izquierda','Grundreihe links','Left home row'],
+const LN={b3:['Boss: Gloop','Jefe: Gloop','Boss: Gloop','Boss: Gloop'],b4:['Boss: Rovelló','Jefe: Rovelló','Boss: Rosti','Boss: Rusty'],b5:['Boss: Fumet','Jefe: Fumet','Boss: Fumi','Boss: Smokey'],b6:['Boss: Rei Carbassa','Jefe: Rey Calabaza','Boss: König Kürbis','Boss: Pumpkin King'],bee:['Abelles','Abejas','Bienen','Bees'],hallo:['Halloween','Halloween','Halloween','Halloween'],toys:['Joguines','Juguetes','Spielzeug','Toy Room'],ice:['Regne de Gel','Reino de Hielo','Eisreich','Ice Kingdom'],wfade:['Paraula amagada','Palabra escondida','Versteckte Wörter','Hidden words'],wpic:['Què és?','¿Qué es?','Was ist das?','What is it?'],wdict:['Dictat','Dictado','Diktat','Listen & type'],wread:['Llegeix','Lee','Lies','Read it'],tricky:['Lletres difícils','Letras difíciles','Knifflige Buchstaben','Tricky letters'],sum:['Sumes','Sumas','Plusrechnen','Sums'],caps:['Majúscules','Mayúsculas','Großbuchstaben','Capital letters'],acc:['Accents','Acentos','Umlaute','Accents'],board:['Pissarra màgica','Pizarra mágica','Zaubertafel','Magic board'],l0:['El meu nom','Mi nombre','Mein Name','My name'],fam:['Família','Familia','Familie','Family'],l1:['Fila de casa esquerra','Fila central izquierda','Grundreihe links','Left home row'],
  l2:['Fila de casa dreta','Fila central derecha','Grundreihe rechts','Right home row'],l3:['Tota la fila de casa','Toda la fila central','Ganze Grundreihe','Whole home row'],
  b1:['Boss: Grumbo','Jefe: Grumbo','Boss: Grumbo','Boss: Grumbo'],l4:['Fila de dalt','Fila de arriba','Obere Reihe','Top row'],l5:['Fila de baix','Fila de abajo','Untere Reihe','Bottom row'],
  hero:["Paraules d'heroi",'Palabras de héroe','Heldenwörter','Hero words'],fridge:['La nevera que camina','La nevera que camina','Der laufende Kühlschrank','Walking fridge'],
@@ -578,7 +580,7 @@ const PADS=[
  {id:'p5',pad:'scroll',count:12,pics:'✌️🟡'}
 ];
 const lst=L=>typeof L.list==='function'?L.list():L.list;
-const FREE=[{id:'board',board:true},{id:'tricky',tricky:true,count:20},{id:'bee',bees:true,special:true,keys:'asdfghjklñqwertyuiop',count:24,theme:'meadow'},{id:'hallo',special:true,list:cur('hallo'),count:8,theme:'halloween'}];
+const FREE=[{id:'board',board:true},{id:'tricky',tricky:true,count:20},{id:'bee',bees:true,special:true,keys:'asdfghjklñqwertyuiop',count:24,theme:'meadow'},{id:'hallo',special:true,list:cur('hallo'),count:8,theme:'halloween'},{id:'toys',special:true,list:cur('toys'),boss:true,btype:'jack',count:6,theme:'toyroom'},{id:'ice',special:true,list:cur('ice'),boss:true,btype:'icebat',count:6,theme:'ice'}];
 const ALL=FREE.concat(LEVELS,PADS,SECRETS);
 const GEN=[];
 function genLevel(n){const th=['day','night','cave','sky'][n%4],harder=Math.min(n,12);
@@ -707,6 +709,8 @@ const THEMES={
  day:{sky:['#5db8f2','#c4ebff'],far:'#8fc9a8',near:'#5fb36a',bush:'#3d9b48',dirt:'#c4713d',grass:'#4cbb4a',grass2:'#2f8f3a',line:'#8f4b25'},
  night:{sky:['#0f1640','#2d3283'],far:'#3a3f8f',near:'#2c3070',bush:'#26306b',dirt:'#4b3a8c',grass:'#7b68e0',grass2:'#5a48b8',line:'#35296b'},
  cave:{sky:['#1d1428','#3a2a4f'],far:'#4a3a5e',near:'#3a2d4c',bush:'#e85d75',dirt:'#3d5a8a',grass:'#5f86c4',grass2:'#46699f',line:'#2a3f63'},
+ toyroom:{sky:['#ffe2b8','#ffd09a'],far:null,near:null,bush:'#ff6fa8',dirt:'#c98b52',grass:'#e8604c',grass2:'#c94a3a',line:'#a8703f'},
+ ice:{sky:['#0b1f4a','#5fa8de'],far:'#d9f0ff',near:'#b5ddf5',bush:'#ffffff',dirt:'#a6d8f5',grass:'#ffffff',grass2:'#d6eefc',line:'#86c3e8'},
  meadow:{sky:['#7cc8f5','#d8f3ff'],far:'#a6d9a0',near:'#7cc47a',bush:'#4cbb4a',dirt:'#b9773f',grass:'#62cc5a',grass2:'#3f9e3e',line:'#8a5129'},
  halloween:{sky:['#1d0b33','#ff7a2f'],far:'#3b1d5c',near:'#2a1245',bush:'#ff8a1f',dirt:'#3a2350',grass:'#5c2f86',grass2:'#43226a',line:'#24123a'},
  sky:{sky:['#9fd8ff','#fff3c8'],far:null,near:null,bush:'#ffffff',dirt:'#ffffff',grass:'#ffe48a',grass2:'#ffd23f',line:'#e3edf7'}
@@ -722,6 +726,18 @@ function drawBG(wx,t,theme){
     for(let i=0;i<5;i++){const bx=(i*230-wx*.25+t*60*(1+i%2))%(W+120),by=60+hash(i+3)*120+Math.sin(t*3+i)*12,bxx=(bx+W+120)%(W+120)-60,fl=Math.sin(t*14+i)*8;
       ctx.fillStyle='#120822';ctx.beginPath();ctx.moveTo(bxx,by);ctx.quadraticCurveTo(bxx-14,by-10-fl,bxx-26,by+fl*.4);ctx.quadraticCurveTo(bxx-14,by-2,bxx,by+4);ctx.quadraticCurveTo(bxx+14,by-2,bxx+26,by+fl*.4);ctx.quadraticCurveTo(bxx+14,by-10-fl,bxx,by);ctx.fill();
       ctx.beginPath();ctx.arc(bxx,by+2,5,0,7);ctx.fill()}
+  }else if(theme==='toyroom'){ // bedroom wall: polka dots, window, shelf
+    const so=(wx*.2)%60;ctx.fillStyle='rgba(255,255,255,.55)';for(let x=-so-60;x<W+60;x+=60)for(let y=20;y<GROUND-20;y+=60){ctx.beginPath();ctx.arc(x+((y/60)%2?30:0),y,7,0,7);ctx.fill()}
+    const wxp=((700-wx*.2)%(W+400)+W+400)%(W+400)-200;ctx.strokeStyle='#16204a';ctx.lineWidth=4;ctx.fillStyle='#bfe6ff';rr(wxp,40,150,120,8);ctx.fill();ctx.stroke();
+    ctx.fillStyle='#fff3b0';ctx.beginPath();ctx.arc(wxp+110,80,18,0,7);ctx.fill();ctx.beginPath();ctx.moveTo(wxp+75,40);ctx.lineTo(wxp+75,160);ctx.moveTo(wxp,100);ctx.lineTo(wxp+150,100);ctx.stroke();
+    ctx.fillStyle='#ff9fb3';rr(wxp-14,32,24,138,6);ctx.fill();ctx.stroke();rr(wxp+140,32,24,138,6);ctx.fill();ctx.stroke();
+    const sp=((260-wx*.35)%(W+300)+W+300)%(W+300)-150;ctx.fillStyle='#a8703f';rr(sp,150,170,12,4);ctx.fill();ctx.stroke();
+    ctx.lineWidth=3;const cols=['#ff4f5e','#ffd23f','#4fb3ff','#5fd35a'];for(let i=0;i<4;i++){ctx.fillStyle=cols[i];rr(sp+10+i*38,118,30,32,4);ctx.fill();ctx.stroke();ctx.fillStyle='#16204a';ctx.font='bold 18px sans-serif';ctx.textAlign='center';ctx.fillText('ABCD'[i],sp+25+i*38,141)}
+  }else if(theme==='ice'){ // night sky with northern lights and snow
+    for(let b=0;b<3;b++){ctx.globalAlpha=.35;ctx.strokeStyle=['#5fffb0','#9d7bff','#5fe0ff'][b];ctx.lineWidth=22-b*5;ctx.beginPath();
+      for(let x=0;x<=W;x+=20){const y=60+b*28+Math.sin(x/120+t*.8+b)*22+Math.sin(x/47+t*1.3)*8;x?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.stroke()}ctx.globalAlpha=1;
+    for(let i=0;i<40;i++){const x=(hash(i)*W*1.4-wx*.05)%W,y=hash(i+77)*150;ctx.globalAlpha=.4+.6*Math.abs(Math.sin(t*2+i));ctx.fillStyle='#fff';ctx.fillRect((x+W)%W,y,2,2)}ctx.globalAlpha=1;
+    ctx.fillStyle='#fff';for(let i=0;i<36;i++){const x=((hash(i+5)*W*1.3-wx*.3+Math.sin(t+i)*20)%W+W)%W,y=(hash(i+40)*GROUND+t*(30+hash(i)*30))%GROUND;ctx.globalAlpha=.85;ctx.beginPath();ctx.arc(x,y,2+hash(i+9)*2.5,0,7);ctx.fill()}ctx.globalAlpha=1;
   }else if(theme==='cave'){
     const so=(wx*.6)%70;ctx.fillStyle='#2a1f3a';ctx.strokeStyle='#16204a';ctx.lineWidth=3;
     for(let x=-so-70;x<W+70;x+=70){const h=30+hash(Math.floor((x+wx*.6)/70))*55;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x+35,h);ctx.lineTo(x+70,0);ctx.closePath();ctx.fill();ctx.stroke()}
@@ -742,6 +758,13 @@ function drawBG(wx,t,theme){
       ctx.fillStyle='#3f7a2a';rr(px-3,py-28,6,10,2);ctx.fill();ctx.stroke();
       ctx.fillStyle=Math.sin(t*8+i)>-.6?'#ffe066':'#ffb020';ctx.beginPath();ctx.moveTo(px-14,py-6);ctx.lineTo(px-6,py-6);ctx.lineTo(px-10,py-13);ctx.closePath();ctx.moveTo(px+14,py-6);ctx.lineTo(px+6,py-6);ctx.lineTo(px+10,py-13);ctx.closePath();ctx.fill();
       ctx.beginPath();ctx.moveTo(px-14,py+4);ctx.lineTo(px-7,py+9);ctx.lineTo(px,py+4);ctx.lineTo(px+7,py+9);ctx.lineTo(px+14,py+4);ctx.lineTo(px+7,py+12);ctx.lineTo(px-7,py+12);ctx.closePath();ctx.fill();
+    }else if(theme==='toyroom'){ // block towers and bouncy balls
+      if(hash(bi+i+7)<.5){const cols=['#ff4f5e','#4fb3ff','#ffd23f','#5fd35a','#9d7bff'];for(let k=0;k<3;k++){ctx.fillStyle=cols[(i+k)%5];rr(x+k*4,GROUND-26-k*26,28,26,4);ctx.fill();ctx.stroke()}}
+      else{const by=GROUND-18-Math.abs(Math.sin(t*4+i))*22;ctx.fillStyle='#ff6fa8';ctx.beginPath();ctx.arc(x+20,by,18,0,7);ctx.fill();ctx.stroke();ctx.strokeStyle='#fff';ctx.lineWidth=4;ctx.beginPath();ctx.arc(x+20,by,11,-.6,1.4);ctx.stroke();ctx.strokeStyle='#16204a';ctx.lineWidth=3}
+    }else if(theme==='ice'){ // snowy pines and ice crystals
+      if(hash(bi+i+3)<.55){ctx.fillStyle='#2f7f6a';for(let k=0;k<3;k++){ctx.beginPath();ctx.moveTo(x+26,GROUND-78+k*22);ctx.lineTo(x+4-k*4,GROUND-34+k*12);ctx.lineTo(x+48+k*4,GROUND-34+k*12);ctx.closePath();ctx.fill();ctx.stroke()}
+        ctx.fillStyle='#fff';for(let k=0;k<3;k++){ctx.beginPath();ctx.moveTo(x+26,GROUND-78+k*22);ctx.lineTo(x+16-k*2,GROUND-62+k*22);ctx.lineTo(x+36+k*2,GROUND-62+k*22);ctx.closePath();ctx.fill()}ctx.fillStyle='#8a5129';rr(x+21,GROUND-12,10,12,2);ctx.fill();ctx.stroke()}
+      else{ctx.fillStyle='rgba(190,235,255,.9)';for(const [dx,h] of [[0,34],[16,52],[32,28]]){ctx.beginPath();ctx.moveTo(x+dx,GROUND);ctx.lineTo(x+dx+7,GROUND-h);ctx.lineTo(x+dx+14,GROUND);ctx.closePath();ctx.fill();ctx.stroke()}}
     }else if(theme==='meadow'){ // flowers
       for(let f=0;f<3;f++){const fx=x+f*24,fh=22+f%2*10,col=['#ff6fa8','#ffd23f','#9d7bff'][(i+f)%3];ctx.strokeStyle='#2f8f3a';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(fx,GROUND);ctx.lineTo(fx,GROUND-fh);ctx.stroke();
         ctx.fillStyle=col;ctx.strokeStyle='#16204a';ctx.lineWidth=2;for(let a=0;a<5;a++){ctx.beginPath();ctx.arc(fx+Math.cos(a*1.257)*7,GROUND-fh+Math.sin(a*1.257)*7,5,0,7);ctx.fill();ctx.stroke()}ctx.fillStyle='#ffe066';ctx.beginPath();ctx.arc(fx,GROUND-fh,4,0,7);ctx.fill()}
@@ -893,8 +916,27 @@ const BODIES={
    ctx.fillStyle='#2a1245';ctx.beginPath();ctx.ellipse(0,-118+w,58,10,0,0,7);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(-30,-120+w);ctx.lineTo(10,-190+w);ctx.lineTo(30,-120+w);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='#ff8a1f';ctx.fillRect(-24,-132+w,50,7);
    ctx.fillStyle=gl;ctx.beginPath();ctx.moveTo(-38,-76+w);ctx.lineTo(-12,-70+w);ctx.lineTo(-28,-90+w);ctx.closePath();ctx.moveTo(38,-76+w);ctx.lineTo(12,-70+w);ctx.lineTo(28,-90+w);ctx.closePath();ctx.fill();ctx.stroke();
    ctx.beginPath();ctx.moveTo(-40,-44+w);for(let i=0;i<=8;i++)ctx.lineTo(-40+i*10,-44+(i%2?10:0)+w);ctx.lineTo(40,-28+w);for(let i=8;i>=0;i--)ctx.lineTo(-40+i*10,-28-(i%2?8:0)+w);ctx.closePath();ctx.fill();ctx.stroke()}
+ ,jack(B,t,w){const bob=Math.abs(Math.sin(t*5))*26,top=-92-bob;
+   ctx.fillStyle=B.flash>0?'#fff':'#4fb3ff';rr(-54,-72,108,72,8);ctx.fill();ctx.stroke();
+   ctx.fillStyle='#ffd23f';for(const [sx,sy] of [[-30,-46],[22,-26],[30,-56]]){ctx.beginPath();for(let k=0;k<10;k++){const r=k%2?5:11,a=k*Math.PI/5-Math.PI/2;ctx.lineTo(sx+Math.cos(a)*r,sy+Math.sin(a)*r)}ctx.closePath();ctx.fill();ctx.stroke()}
+   ctx.fillStyle='#ff4f5e';ctx.save();ctx.translate(-54,-72);ctx.rotate(-.5-Math.sin(t*5)*.1);rr(0,-8,108,10,4);ctx.fill();ctx.stroke();ctx.restore();
+   ctx.strokeStyle='#8a97b8';ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(0,-72);for(let k=1;k<=6;k++)ctx.lineTo(k%2?-16:16,-72+(top+72)*k/6);ctx.stroke();ctx.strokeStyle='#16204a';ctx.lineWidth=3;
+   ctx.fillStyle='#ffe0bd';ctx.beginPath();ctx.arc(0,top-26,30,0,7);ctx.fill();ctx.stroke();
+   ctx.fillStyle='#ff6fa8';ctx.beginPath();ctx.arc(0,top-20,6,0,7);ctx.fill();ctx.stroke();
+   ctx.fillStyle='#16204a';ctx.beginPath();ctx.arc(-11,top-34,4,0,7);ctx.arc(11,top-34,4,0,7);ctx.fill();
+   ctx.beginPath();ctx.arc(0,top-14,13,.2,Math.PI-.2);ctx.stroke();
+   ctx.fillStyle='#9d7bff';ctx.beginPath();ctx.ellipse(0,top-52,24,8,0,0,7);ctx.fill();ctx.stroke();ctx.fillStyle='#5fd35a';ctx.beginPath();ctx.arc(0,top-60,8,Math.PI,0);ctx.fill();ctx.stroke();
+   const sp=t*14;ctx.fillStyle='#ffd23f';for(const d of [-1,1]){ctx.beginPath();ctx.ellipse(d*Math.cos(sp)*14,top-68,Math.abs(Math.cos(sp))*14+2,4,0,0,7);ctx.fill();ctx.stroke()}},
+ icebat(B,t,w){const hv=-110+Math.sin(t*3)*12,fl=Math.sin(t*10)*18;
+   ctx.globalAlpha=.25;ctx.fillStyle='#16204a';ctx.beginPath();ctx.ellipse(0,-4,40,7,0,0,7);ctx.fill();ctx.globalAlpha=1;
+   ctx.fillStyle=B.flash>0?'#fff':'#8fd8ff';for(const d of [-1,1]){ctx.beginPath();ctx.moveTo(d*22,hv-10);ctx.lineTo(d*70,hv-40-fl);ctx.lineTo(d*96,hv-6-fl*.4);ctx.lineTo(d*74,hv+6);ctx.lineTo(d*58,hv-6);ctx.lineTo(d*44,hv+12);ctx.lineTo(d*24,hv+8);ctx.closePath();ctx.fill();ctx.stroke()}
+   ctx.fillStyle=B.flash>0?'#fff':'#bfeaff';ctx.beginPath();ctx.ellipse(0,hv,32,36,0,0,7);ctx.fill();ctx.stroke();
+   ctx.fillStyle='#bfeaff';for(const d of [-1,1]){ctx.beginPath();ctx.moveTo(d*12,hv-30);ctx.lineTo(d*24,hv-58);ctx.lineTo(d*28,hv-24);ctx.closePath();ctx.fill();ctx.stroke()}
+   ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(-11,hv-8,9,0,7);ctx.arc(11,hv-8,9,0,7);ctx.fill();ctx.stroke();ctx.fillStyle='#16204a';ctx.beginPath();ctx.arc(-9,hv-7,4,0,7);ctx.arc(9,hv-7,4,0,7);ctx.fill();
+   ctx.fillStyle='#fff';for(const d of [-1,1]){ctx.beginPath();ctx.moveTo(d*8,hv+12);ctx.lineTo(d*4,hv+24);ctx.lineTo(d*1,hv+12);ctx.closePath();ctx.fill();ctx.stroke()}
+   ctx.fillStyle='rgba(255,255,255,.8)';for(let i=0;i<4;i++){const k=(t*.8+i/4)%1;ctx.globalAlpha=1-k;ctx.beginPath();ctx.arc(Math.sin(i*2.1)*30,hv+30+k*70,3,0,7);ctx.fill()}ctx.globalAlpha=1}
 };
-const BNAME={grumbo:['el Grumbo','Grumbo','Grumbo','Grumbo'],king:['el Rei Grumbo','el Rey Grumbo','König Grumbo','King Grumbo'],gloop:['el Gloop','Gloop','Gloop','Gloop'],robot:['el Rovelló','Rovelló','Rosti','Rusty'],dragon:['el Fumet','Fumet','Fumi','Smokey'],pumpkin:['el Rei Carbassa','el Rey Calabaza','König Kürbis','the Pumpkin King']};
+const BNAME={grumbo:['el Grumbo','Grumbo','Grumbo','Grumbo'],king:['el Rei Grumbo','el Rey Grumbo','König Grumbo','King Grumbo'],gloop:['el Gloop','Gloop','Gloop','Gloop'],robot:['el Rovelló','Rovelló','Rosti','Rusty'],dragon:['el Fumet','Fumet','Fumi','Smokey'],pumpkin:['el Rei Carbassa','el Rey Calabaza','König Kürbis','the Pumpkin King'],jack:['en Boing','Boing','Boing','Boing'],icebat:['el Ratpenat de Gel','el Murciélago de Hielo','die Eisfledermaus','the Ice Bat']};
 const bname=L=>(BNAME[L.btype||(L.big?'king':'grumbo')]||BNAME.grumbo)[Math.max(0,LANGS.indexOf(lang))];
 function drawBoss(B,t){
   const s=G.L.big?1.3:1,x=B.x;
@@ -914,7 +956,7 @@ function drawBoss(B,t){
   ctx.lineWidth=3;ctx.fillStyle='#16204a';rr(-24,-48+wob,42,15,6);ctx.fill();
   ctx.fillStyle='#fff';for(let i=0;i<4;i++){ctx.beginPath();ctx.moveTo(-21+i*10,-48+wob);ctx.lineTo(-16+i*10,-40+wob);ctx.lineTo(-11+i*10,-48+wob);ctx.fill()}}
   ctx.restore();
-  if(!B.dead){for(let i=0;i<B.max;i++){const hx=x-(B.max-1)*14+i*28,hy=GROUND-({pumpkin:218,gloop:182}[G.L.btype]||(G.L.big?205:165));ctx.save();ctx.globalAlpha=i<B.hp?1:.25;
+  if(!B.dead){for(let i=0;i<B.max;i++){const hx=x-(B.max-1)*14+i*28,hy=GROUND-({pumpkin:218,gloop:182,jack:232,icebat:222}[G.L.btype]||(G.L.big?205:165));ctx.save();ctx.globalAlpha=i<B.hp?1:.25;
     ctx.fillStyle='#ff4f5e';ctx.strokeStyle='#16204a';ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(hx,hy+9);ctx.bezierCurveTo(hx-14,hy-1,hx-8,hy-12,hx,hy-4);ctx.bezierCurveTo(hx+8,hy-12,hx+14,hy-1,hx,hy+9);ctx.fill();ctx.stroke();ctx.restore()}}
 }
 function drawCoin(x,y,t,a){ctx.save();ctx.globalAlpha=a;const w=Math.max(2,Math.abs(Math.cos(t*10))*13);
@@ -1006,7 +1048,8 @@ function newGame(li){
   if(L.boss)G.boss={x:W-190,hp:G.total,max:G.total,pause:2.2,dead:0,flash:0};
   document.getElementById('screen').classList.toggle('bossmode',!!L.boss);
   hideOverlays();ac();if(L.pad){padStart();return}if(L.board){boardStart();return}spawnGroup();
-  if(L.boss)setTimeout(()=>speak(T[lang].bossIntroN(bname(L))),50);
+  if(L.id==='toys'||L.id==='ice')setTimeout(()=>speak(T[lang][L.id+'Say']+' '+T[lang].bossIntroN(bname(L))),50);
+  else if(L.boss)setTimeout(()=>speak(T[lang].bossIntroN(bname(L))),50);
   else if(L.secret)setTimeout(()=>speak(T[lang].secretWorld),50);
   else if(L.id==='hallo')setTimeout(()=>speak(T[lang].halloSay),50);
   else if(L.bees)setTimeout(()=>speak(T[lang].beeSay),50);
@@ -1173,6 +1216,7 @@ function drawTurtle(T0){
   ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(-34,-8,5,0,7);ctx.fill();ctx.fillStyle='#16204a';ctx.beginPath();ctx.arc(-35,-8,2.5,0,7);ctx.fill();
   ctx.beginPath();ctx.arc(-35,0,5,.2,Math.PI-.2);ctx.stroke();
   ctx.fillStyle='#ff9fb3';ctx.beginPath();ctx.arc(-26,1,3,0,7);ctx.fill();
+  if(G&&G.L&&G.L.theme==='ice'){ctx.fillStyle='#ff4f5e';ctx.beginPath();ctx.arc(-30,-16,14,Math.PI,0);ctx.fill();ctx.stroke();ctx.fillStyle='#fff';rr(-45,-19,30,7,3);ctx.fill();ctx.stroke();ctx.beginPath();ctx.arc(-30,-33,6,0,7);ctx.fill();ctx.stroke()}
   if(G&&G.L&&G.L.theme==='halloween'){ctx.fillStyle='#2a1245';ctx.beginPath();ctx.ellipse(-30,-15,15,4,-.2,0,7);ctx.fill();ctx.stroke();ctx.beginPath();ctx.moveTo(-39,-16);ctx.lineTo(-27,-42);ctx.lineTo(-22,-16);ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='#ff8a1f';ctx.fillRect(-36,-21,13,4)}
   // tail
   ctx.fillStyle='#9be29b';ctx.beginPath();ctx.moveTo(22,4);ctx.lineTo(32,8);ctx.lineTo(22,10);ctx.closePath();ctx.fill();ctx.stroke();
@@ -1227,7 +1271,7 @@ function update(f,dt){
   if(G.boss){const B=G.boss;
     if(B.dead)B.dead+=dt;
     else if(G.state==='boss'||G.state==='bosswait'){
-      if(B.pause>0)B.pause-=dt;else B.x-=({gloop:28,robot:36,dragon:40,pumpkin:38}[G.L.btype]||(G.L.big?40:32))*dt;
+      if(B.pause>0)B.pause-=dt;else B.x-=({gloop:28,robot:36,dragon:40,pumpkin:38,jack:34,icebat:42}[G.L.btype]||(G.L.big?40:32))*dt;
       if(B.x<HERO_X+120){B.x=HERO_X+120+230;B.pause=1.4;spawnTurtle();G.mistakes++;sfx.bump();G.shake=14;react('oops','bad','✗',1.4)}
     }
     if(B.flash>0)B.flash-=dt;
@@ -1355,7 +1399,7 @@ function tilePics(L){
   return capsHTML(L.keys.length>8?L.keys.slice(0,5):L.keys)+(L.keys.length>8?'<span class="cap more">+</span>':'');
 }
 let menuView='home',mapPage=-1,mapTrack='keys';
-const NICON={b3:'🟢',b4:'🤖',b5:'🐉',b6:'🎃',bee:'🐝',hallo:'🎃',wfade:'👀',wpic:'🖼️',wdict:'👂',wread:'📖',board:'🪄',tricky:'🎯',l0:'@eliot',fam:'@mama1',l1:'ASDF',l2:'JKLÑ',l3:'A·Ñ',b1:'👾',l4:'QWE',l5:'ZXC',hero:'⚡',fridge:'🍕',col:'🌈',num:'123',cnt:'🍎',sum:'➕',l6:'ABC',syl1:'🗣️',syl2:'🦆',ca:'CA',es:'ES',de:'DE',l7:'EN',b2:'👑',sent:'💬',caps:'Aa',acc:'É',s1:'🍄',s2:'☁️',s3:'⭐',p1:'👆',p2:'🐢',p3:'✊',p4:'🎁',p5:'✌️'};
+const NICON={b3:'🟢',b4:'🤖',b5:'🐉',b6:'🎃',bee:'🐝',hallo:'🎃',toys:'🧸',ice:'❄️',wfade:'👀',wpic:'🖼️',wdict:'👂',wread:'📖',board:'🪄',tricky:'🎯',l0:'@eliot',fam:'@mama1',l1:'ASDF',l2:'JKLÑ',l3:'A·Ñ',b1:'👾',l4:'QWE',l5:'ZXC',hero:'⚡',fridge:'🍕',col:'🌈',num:'123',cnt:'🍎',sum:'➕',l6:'ABC',syl1:'🗣️',syl2:'🦆',ca:'CA',es:'ES',de:'DE',l7:'EN',b2:'👑',sent:'💬',caps:'Aa',acc:'É',s1:'🍄',s2:'☁️',s3:'⭐',p1:'👆',p2:'🐢',p3:'✊',p4:'🎁',p5:'✌️'};
 function nodeIcon(L){if(L.gen)return '<span class="nicon gicon">'+L.icon+'</span><span class="gnum">'+L.n+'</span>';const v=NICON[L.id]||'⭐';if(v[0]==='@'){const k=v.slice(1);const ph=k==='eliot'?(FACES.e_grin||FACES.happy):FACES[k];return ph?'<img class="nimg" src="'+ph+'" alt="">':'<span class="nicon">'+(k==='eliot'?'E':'👪')+'</span>'}
   return /^[A-ZÑ·É123a]+$/.test(v)?'<span class="ntext">'+v+'</span>':'<span class="nicon">'+v+'</span>'}
 function trackList(t){return t==='pad'?PADS:LEVELS.concat(SECRETS.filter(x=>found[x.id]),KEYSEQ().slice(LEVELS.length))}
@@ -1366,7 +1410,7 @@ function renderMenu(){
   if(menuView==='home'){
     const nw=nextWorld('keys');const face=FACES.e_grin||FACES.happy;
     box.innerHTML='<div class="home"><button class="bigplay" id="hPlay" type="button" aria-label="Play">'+(face?'<img src="'+face+'" alt="">':'')+'<span class="pl">▶</span><span class="nexticon">'+nodeIcon(nw)+'</span></button>'+
-      '<div class="homerow"><button class="hb" data-go="keys" type="button" aria-label="Keyboard">⌨️</button><button class="hb" data-go="pad" type="button" aria-label="Trackpad">👆</button><button class="hb" data-go="board" type="button" aria-label="Magic board">🪄</button><button class="hb" data-go="tricky" type="button" aria-label="Tricky letters">🎯</button><button class="hb" data-go="bee" type="button" aria-label="Bees">🐝</button><button class="hb hallo" data-go="hallo" type="button" aria-label="Halloween">🎃</button></div></div>';
+      '<div class="homerow"><button class="hb" data-go="keys" type="button" aria-label="Keyboard">⌨️</button><button class="hb" data-go="pad" type="button" aria-label="Trackpad">👆</button><button class="hb" data-go="board" type="button" aria-label="Magic board">🪄</button><button class="hb" data-go="tricky" type="button" aria-label="Tricky letters">🎯</button><button class="hb" data-go="bee" type="button" aria-label="Bees">🐝</button><button class="hb hallo" data-go="hallo" type="button" aria-label="Halloween">🎃</button><button class="hb toys" data-go="toys" type="button" aria-label="Toy Room">🧸</button><button class="hb ice" data-go="ice" type="button" aria-label="Ice Kingdom">❄️</button></div></div>';
     const pb=box.querySelector('#hPlay');pb.onclick=()=>go(nw);pb.onmouseenter=()=>speak(T[lang].play);
     box.querySelectorAll('.hb').forEach(b=>{const g=b.dataset.go;
       b.onmouseenter=()=>speak(g==='keys'?T[lang].kbWorlds:g==='pad'?T[lang].padWorlds:nm(ALL.find(x=>x.id===g)));

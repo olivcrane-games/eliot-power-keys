@@ -1,0 +1,11 @@
+# Family photos never go in git
+photos/
+*.jpg
+*.jpeg
+*.png
+faces.bin
+# Build output
+dist/
+node_modules/
+.vercel/
+__pycache__/

@@ -1,0 +1,8 @@
+{
+  "name": "eliot-power-keys",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "^0.27.0"
+  }
+}

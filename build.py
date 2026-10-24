@@ -77,7 +77,7 @@ async function cloudPull(){try{const r=await fetch('/api/save',{headers:{'x-save
     if(changed){cmsg('Loaded progress from the cloud.');setTimeout(()=>location.reload(),400);return}
     cmsg('Cloud save is up to date.')}
   catch(e){cmsg('Cloud save is offline. Progress is still saved on this computer.')}}
-async function cloudInit(pw){if(!/(^|\\.)justshove\\.com$|\\.vercel\\.app$|^localhost$/.test(location.hostname))return;
+async function cloudInit(pw){if(!/(^|\\.)(justshove|eliotpowerkeys)\\.com$|\\.vercel\\.app$|^localhost$/.test(location.hostname))return;
   const enc=new TextEncoder();CKEY=[...new Uint8Array(await crypto.subtle.digest('SHA-256',enc.encode('epk-save-v1:'+pw)))].map(b=>b.toString(16).padStart(2,'0')).join('');
   const base=await crypto.subtle.importKey('raw',enc.encode(pw),'PBKDF2',false,['deriveKey']);
   CK=await crypto.subtle.deriveKey({name:'PBKDF2',salt:enc.encode('epk-cloud-salt-v1'),iterations:150000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);

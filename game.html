@@ -250,6 +250,7 @@ canvas{display:block;width:100%;height:100%}
 .stmsg{margin:0;font-weight:800;color:var(--muted)}
 #screen.bossmode .react,#screen.padmode .react{left:1.5%;right:auto;top:24%;bottom:auto;width:clamp(56px,9%,92px)}
 .cloudmsg{width:100%;margin:2px 0 0!important;font-size:13px!important;color:var(--muted)}
+.musiclink{text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:18px}.musiclink span{font-size:16px}@media (max-width:640px){.musiclink span{display:none}}
 .foot{color:var(--white);font-weight:800;font-size:13px;opacity:.9;text-align:center;margin:0}
 </style>
 
@@ -263,7 +264,7 @@ canvas{display:block;width:100%;height:100%}
         <button class="lflag" data-l="de" type="button" aria-label="Deutsch"><span class="fl fl-de"></span><b class="fstar" id="fs-de" hidden></b></button>
         <button class="lflag" data-l="en" type="button" aria-label="English"><span class="fl fl-en"></span><b class="fstar" id="fs-en" hidden></b></button>
       </div>
-      <button class="hbtn" id="bMenu" type="button" aria-label="Home">🏠</button>
+      <button class="hbtn" id="bMenu" type="button" aria-label="Home">🏠</button><a class="hbtn musiclink" href="https://musica.justshove.com" aria-label="Music Power game">🎹 <span>Música</span></a>
       <button class="hbtn piggyb" id="bPiggy" type="button" aria-label="Real coin piggy bank">🐷 <span id="piggyN">0</span></button>
       <button class="hbtn" id="bGear" type="button" aria-label="Grown-up settings">⚙️</button>
     </div>

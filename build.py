@@ -50,7 +50,7 @@ const b64e=u=>{let s='';for(let i=0;i<u.length;i+=8192)s+=String.fromCharCode.ap
 const b64u=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
 function snap(){const o={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('rt-')&&k!=='rt-pw')o[k]=localStorage.getItem(k)}return o}
 async function cloudPush(force){if(!CK)return;const now=Date.now();if(!force&&now-lastPush<30000){clearTimeout(cloudT);cloudT=setTimeout(()=>cloudPush(true),30000-(now-lastPush));return}
-  lastPush=now;cloudDirtyFlag=false;const u=String(now);localStorage.setItem('rt-updated',u);const data=snap();data['rt-updated']=u;
+  lastPush=now;cloudDirtyFlag=false;await cloudRefresh();const u=String(now);localStorage.setItem('rt-updated',u);const data=snap();data['rt-updated']=u;
   try{const iv=crypto.getRandomValues(new Uint8Array(12));const ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},CK,new TextEncoder().encode(JSON.stringify(data))));
     const all=new Uint8Array(12+ct.length);all.set(iv);all.set(ct,12);
     const r=await fetch('/api/save',{method:'PUT',keepalive:all.length<60000,headers:{'x-save-key':CKEY,'Content-Type':'text/plain'},body:b64e(all)});
@@ -67,6 +67,9 @@ function mergeIn(data,cloudNewer){const J=(x,d)=>{try{return x==null?d:JSON.pars
     else if(k==='rt-unlock'){nv=JSON.stringify(J(lv,false)||J(cv,false))}
     if(nv!==lv){localStorage.setItem(k,nv);changed=true}}
   if(cloudNewer)localStorage.setItem('rt-updated',data['rt-updated']||String(Date.now()));return changed}
+async function cloudRefresh(){if(!CK)return false;try{const r=await fetch('/api/save',{headers:{'x-save-key':CKEY},cache:'no-store'});if(!r.ok)return false;
+    const u=b64u((await r.text()).trim());const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},CK,u.slice(12));const ch=mergeIn(JSON.parse(new TextDecoder().decode(pt)),false);
+    if(ch){best=store.get('rt-stars',{});realCoins=store.get('rt-real',{});found=store.get('rt-found',{});wordStats=store.get('rt-words',{});playTime=store.get('rt-time',{});try{if(!G)renderMenu()}catch(e){}}return ch}catch(e){return false}}
 async function cloudPull(){try{const r=await fetch('/api/save',{headers:{'x-save-key':CKEY},cache:'no-store'});
     if(r.status===404){cmsg('Cloud save started.');return cloudPush(true)}
     if(!r.ok){cmsg('Cloud save not available ('+r.status+'). Progress is saved on this computer.');return}
@@ -84,6 +87,7 @@ async function cloudInit(pw){if(!/(^|\\.)(justshove|eliotpowerkeys)\\.com$|\\.ve
   window.__cloudDirty=()=>{cloudDirtyFlag=true;clearTimeout(cloudT);cloudT=setTimeout(()=>cloudPush(false),5000)};
   window.__cloudNow=()=>{if(Date.now()-lastPush>20000){clearTimeout(cloudT);cloudT=setTimeout(()=>cloudPush(true),1500)}};
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&cloudDirtyFlag)cloudPush(true)});
+  setInterval(()=>{if(document.visibilityState==='visible'&&Date.now()-lastPush>45000)cloudRefresh()},60000);
   await cloudPull()}
 
 /* ---------- password lock (photos are encrypted) ---------- */

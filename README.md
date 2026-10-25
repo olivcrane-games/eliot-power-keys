@@ -6,7 +6,7 @@ Everything is shown with pictures, colours and voice, so it works for a child wh
 - **Four languages:** Catalan (the main one), Spanish, German and English. You pick one with the flags, and every key he presses is spoken in that language.
 - **On-screen Spanish Mac keyboard** with finger colours, including ñ, ç and the accent keys.
 - **Worlds:** home row, letters, syllables, whole words, capitals, accents, numbers and sums, trackpad lessons, plus endless generated worlds after the hand-made ones.
-- **Extras:** bosses (a gloop, a robot, a dragon, a pumpkin, a jack-in-the-box), secret levels, a Halloween world, a Toy Room, an Ice Kingdom where you walk to the castle with a sword, bees, stupid flying turtles when he makes a mistake, a robot cat and a walking fridge.
+- **Extras:** bosses (a gloop, a robot, a dragon, a pumpkin, a jack-in-the-box), secret levels, a Halloween world, a Toy Room, an Ice Kingdom where you walk to King Polo's castle with a sword, a secret Spooky World that opens after 3 gold stars, bees, stupid flying turtles when he makes a mistake, a robot cat and a walking fridge.
 - **Rewards:** stars per world. Three perfect worlds earn one **real coin**, paid by a grown-up.
 - **Recording:** a letter studio where the child records himself saying each letter, plus recorded family cheers.
 - **Grown-up panel (⚙️):** settings, a learning report, voices and cheers.

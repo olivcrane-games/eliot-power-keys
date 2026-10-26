@@ -70,6 +70,10 @@ function mergeIn(data,cloudNewer){const J=(x,d)=>{try{return x==null?d:JSON.pars
 async function cloudRefresh(){if(!CK)return false;try{const r=await fetch('/api/save',{headers:{'x-save-key':CKEY},cache:'no-store'});if(!r.ok)return false;
     const u=b64u((await r.text()).trim());const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(0,12)},CK,u.slice(12));const ch=mergeIn(JSON.parse(new TextDecoder().decode(pt)),false);
     if(ch){best=store.get('rt-stars',{});realCoins=store.get('rt-real',{});found=store.get('rt-found',{});wordStats=store.get('rt-words',{});playTime=store.get('rt-time',{});try{if(!G)renderMenu()}catch(e){}}return ch}catch(e){return false}}
+async function loadExtraFaces(pw){try{const r=await fetch('/api/save',{headers:{'x-save-key':'b125c3b0658eccf8af9508aea1106ca34bdc10ffb056ef061c01cbc882016181'},cache:'no-store'});if(!r.ok)return;
+    const u=b64u((await r.text()).trim());const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+    const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:u.slice(0,16),iterations:250000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:u.slice(16,28)},key,u.slice(28));setFaces(Object.assign({},FACES,JSON.parse(new TextDecoder().decode(pt))))}catch(e){}}
 async function cloudPull(){try{const r=await fetch('/api/save',{headers:{'x-save-key':CKEY},cache:'no-store'});
     if(r.status===404){cmsg('Cloud save started.');return cloudPush(true)}
     if(!r.ok){cmsg('Cloud save not available ('+r.status+'). Progress is saved on this computer.');return}
@@ -100,6 +104,7 @@ async function tryUnlock(pw){
   const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:ENC.iv},key,ENC.ct);
   setFaces(JSON.parse(new TextDecoder().decode(pt)));react('happy','idle','',0);
   document.getElementById('lock').remove();
+  loadExtraFaces(pw);
   cloudInit(pw).catch(()=>cmsg('Cloud save is offline. Progress is still saved on this computer.'));
 }
 const lockForm=document.getElementById('lockForm');

@@ -376,8 +376,9 @@ const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.
 let lang=store.get('rt-lang','ca'), soundOn=store.get('rt-sound',true), voiceOn=store.get('rt-voice',true);
 if(!['ca','es','de','en'].includes(lang))lang='ca';
 let best=store.get('rt-stars',{});
-const FAMILY=[['MAMA','👩',null,null,'mama1'],['PAPA','👨',null,null,'papa1']];
-const FAMPH={MAMA:['mama1','mama2'],PAPA:['papa1','papa2','papa3'],ELIOT:['e_grin','e_laugh','e_castle','e_boat']};
+const FAMILY=[['MAMA','👩',null,null,'mama1'],['PAPA','👨',null,null,'papa1'],['LINA','👩‍🦰',null,null,'lina1'],['VAKARE','👧',null,null,'vakare1'],['OMA','👵',null,null,'oma1']];
+const famSay=w=>({LINA:'Tante Lina',VAKARE:'Vakare',OMA:'Oma'}[w]||w.toLowerCase());
+const FAMPH={MAMA:['mama1','mama2'],PAPA:['papa1','papa2','papa3'],LINA:['lina1'],VAKARE:['vakare1'],OMA:['oma1'],ELIOT:['e_grin','e_laugh','e_castle','e_boat']};
 const SYL1=['MA','ME','MI','MO','MU','PA','PE','PI','PO','PU','SA','SE','SI','SO','SU','LA','LE','LI','LO','LU'].map(x=>[x,'🗣️',null,[x]]);
 const syl=(w,e,parts)=>[w,e,null,parts];
 const T={
@@ -1062,7 +1063,7 @@ function buildQueue(L){
     return pick.map(([w,e,ph])=>({chars:[...w.toLowerCase()],word:w,emoji:e,photo:ph||null,mode:L.wmode}))}
   if(L.sum){const q2=[];for(let i=0;i<L.count;i++){const a=1+Math.floor(Math.random()*5),b=1+Math.floor(Math.random()*Math.min(4,9-a));const em=Object.keys(CNT);q2.push({chars:[String(a+b)],word:String(a+b),sumA:a,sumB:b,countEmo:em[Math.floor(Math.random()*em.length)]})}return q2}
   if(L.tricky){const tk=trickyKeys();const q2=[];let last='';for(let i=0;i<L.count;i++){let c=tk[Math.floor(Math.random()*tk.length)];if(c===last)c=tk[(tk.indexOf(c)+1)%tk.length];q2.push({chars:[c]});last=c}return q2}
-  if(L.caps){const base=['Mama','Papa'].concat(T[lang].words.slice(0,8).map(w=>w[0][0]+w[0].slice(1).toLowerCase()));
+  if(L.caps){const base=['Mama','Papa','Lina','Vakare','Oma'].concat(T[lang].words.slice(0,8).map(w=>w[0][0]+w[0].slice(1).toLowerCase()));
     return shuffle(base.slice()).slice(0,L.count).map(w=>({chars:[...w],word:w,emoji:(FAMPH[w.toUpperCase()]?'':(T[lang].words.find(x=>x[0]===w.toUpperCase())||['','🔤'])[1]),photo:FAMPH[w.toUpperCase()]?FAMPH[w.toUpperCase()][0]:null,caps:true}))}
   if(L.counting){const ds=shuffle('123456789'.split('')).concat(shuffle('12345'.split(''))).slice(0,L.count),em=Object.keys(CNT);
     return ds.map(d=>{const e=em[Math.floor(Math.random()*em.length)];return {chars:[d],word:d,countEmo:e}})}
@@ -1166,7 +1167,7 @@ function spawnGroup(){
     G.state='run';
   }
   if(g.mode==='read'){if(G.done===0)speak(T[lang].readSay)}else if(g.mode==='pic'){}else if(g.mode==='dict'||g.mode==='fade')speak(g.word.toLowerCase(),G.L.say);
-  else if(g.sumA!=null)speak(T[lang].sumSay(g.sumA,g.sumB));else if(g.countEmo)speak(T[lang].countQ[g.countEmo]);else if(g.syl&&g.syl.length>1)speak(g.syl.join('... ').toLowerCase()+'... '+g.word.toLowerCase(),G.L.say);else if(g.word)speak(g.word.toLowerCase(),G.L.say);else sayLetter(g.chars[0]);
+  else if(g.sumA!=null)speak(T[lang].sumSay(g.sumA,g.sumB));else if(g.countEmo)speak(T[lang].countQ[g.countEmo]);else if(g.syl&&g.syl.length>1)speak(g.syl.join('... ').toLowerCase()+'... '+g.word.toLowerCase(),G.L.say);else if(g.word)speak(FAMPH[g.word]?famSay(g.word):g.word.toLowerCase(),G.L.say);else sayLetter(g.chars[0]);
   updateTargetUI();
 }
 function countRetry(){const g=G.group;G.cntWrong=(G.cntWrong||0)+1;const q=g.sumA!=null?T[lang].sumSay(g.sumA,g.sumB):T[lang].countQ[g.countEmo];
@@ -1212,7 +1213,7 @@ function boardKey(e){
   const w=B.text.split(' ').pop();if(FAMPH[w]||dict().m[w]){clearTimeout(B.tm);B.tm=setTimeout(()=>{if(G&&G.board&&B.text.split(' ').pop()===w)boardWord(w)},700)}
 }
 function boardWord(w){if(!w)return;const B=G.board;
-  if(FAMPH[w]){const fp=FAMPH[w];famPop(fp[Math.floor(Math.random()*fp.length)]);if(!playCheer(.4))speak(w.toLowerCase());return}
+  if(FAMPH[w]){const fp=FAMPH[w];famPop(fp[Math.floor(Math.random()*fp.length)]);if(!playCheer(.4))speak(famSay(w));return}
   const d=dict().m[w];if(d){B.pop={e:d.e,t:0};burst(W/2,180,26);sfx.power();speak(w.toLowerCase(),d.vl);react('happy','good','✓')}
   else speak(w.toLowerCase())}
 function drawBoard(t){const B=G.board,txt=B.text;
@@ -1236,7 +1237,7 @@ function wordDone(){
   const g=G.group,L=G.L;
   if(g.mode&&g.mode!=='fade'&&!G.groupMist){wordStats[g.word]=(wordStats[g.word]||0)+1;store.set('rt-words',wordStats)}
   if(g.mode==='read'){G.readOk={t:0,i:+g.chars[0]-1};speak(g.word.toLowerCase())}
-  const fp=FAMPH[g.word];if(fp&&!L.boss){famPop(fp[Math.floor(Math.random()*fp.length)]);setTimeout(()=>{if(!playCheer(.5))speak(g.word.toLowerCase())},250)}
+  const fp=FAMPH[g.word];if(fp&&!L.boss){famPop(fp[Math.floor(Math.random()*fp.length)]);setTimeout(()=>{if(!playCheer(.5))speak(famSay(g.word))},250)}
   else{if(g.mode!=='read'&&!L.colorWords&&!L.fridge)sayDoneWord(g);if(Math.random()<.25)setTimeout(()=>playCheer(1),1400)}
   if(L.colorWords&&g.color!=null){G.hero.color=g.color;G.banner={text:T[lang].colorBanner(g.word),t:0};G.glow=1;burst(HERO_X,GROUND-50,40);sfx.power();react('wow','wow','★',1.6);
     setTimeout(()=>speak(T[lang].colorSay(g.word)),200)}
@@ -1484,7 +1485,7 @@ let tokens=store.get('rt-tokens',0);
 const tokHTML=n=>'<span class="tokens">'+[0,1,2].map(i=>'<i class="'+(i<n?'on':'')+'">★</i>').join('')+'</span>';
 const capsHTML=str=>[...str].map(c=>'<span class="cap" style="--fc:var(--f-'+((FINGER[c.toLowerCase()]||{}).f||'thumb')+')">'+c.toUpperCase()+'</span>').join('');
 function tilePics(L){
-  if(L.id==='fam'&&FACES.mama1)return '<img class="tface" src="'+FACES.mama1+'" alt=""><img class="tface" src="'+FACES.papa1+'" alt="">';
+  if(L.id==='fam'&&FACES.mama1)return '<img class="tface" src="'+FACES.mama1+'" alt=""><img class="tface" src="'+FACES.papa1+'" alt="">'+(FACES.lina1?'<img class="tface" src="'+FACES.lina1+'" alt="">':'');
   if(L.pad)return '<span class="pic">'+L.pics+'</span>';
   if(L.board)return '<span class="pic">🪄🔤</span>';
   if(L.tricky)return capsHTML(trickyKeys().slice(0,4).join(''));

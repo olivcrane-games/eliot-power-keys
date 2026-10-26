@@ -29,7 +29,7 @@ Without photos the game still works fine.
 To use photos, put a `photos/faces.json` file in the folder. `build.py` encrypts the photos into `dist/faces.bin` with AES-GCM, using a key derived from the password with PBKDF2 (250k iterations), so they only appear after unlocking. The photo keys the game uses are:
 - `happy`, `smug`, `wow`, `oops` (reactions)
 - `e_laugh`, `e_grin`, `e_cuddle`, `e_tooth`, `e_castle`, `e_vers`, `e_boat`
-- `mama1`, `mama2`, `papa1`, `papa2`, `papa3`
+- `mama1`, `mama2`, `papa1`, `papa2`, `papa3`, `lina1`, `vakare1`, `oma1`
 
 ## Build & deploy
 
